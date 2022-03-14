@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skit">
         <activity
+            android:name=".ui.homescreen.HomeScreen"
+            android:exported="false" />
+        <activity
             android:name=".ui.splashscreen.SplashScreen"
             android:exported="true">
             <intent-filter>
