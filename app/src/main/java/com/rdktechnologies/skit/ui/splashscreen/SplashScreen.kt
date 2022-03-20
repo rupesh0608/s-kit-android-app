@@ -16,12 +16,12 @@ class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-            //setTransparentStatusBar()
-
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
-            finish()
+            finish()     //setTransparentStatusBar()
+
+
         }, 3000)
     }
 
