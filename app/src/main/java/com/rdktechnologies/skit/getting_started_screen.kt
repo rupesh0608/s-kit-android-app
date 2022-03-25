@@ -7,12 +7,12 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
 
-class login_page : AppCompatActivity() {
+class getting_started_screen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_page)
+        setContentView(R.layout.activity_getting_started_screen)
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, getting_started_screen::class.java)
+            val intent = Intent(this, forgot_password_layout::class.java)
             startActivity(intent)
             finish()
 
