@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".getting_started_screen"
+    tools:context=".ui.signupscreen.SignUpScreen"
     android:background="@drawable/splash_gradient_bg">
     <ImageView
         android:layout_width="187dp"
         android:layout_height="181dp"
         android:layout_marginEnd="150dp"
         android:layout_marginRight="150dp"
-        android:src="@drawable/logo_transparent_bg" />
+        android:src="@drawable/logo_transparent_bg"
+        tools:ignore="ContentDescription" />
     <TextView
         android:id="@+id/gettingstated"
         android:layout_width="wrap_content"
@@ -96,6 +97,7 @@
         android:visibility="visible">
 
     </EditText>
+
     <EditText
         android:id="@+id/confirmpassword"
         android:layout_width="match_parent"
@@ -120,17 +122,14 @@
     </EditText>
 
     <Button
-        android:id="@+id/signup"
+        android:id="@+id/btnSignup"
         android:layout_width="251dp"
-        android:layout_height="76dp"
+        android:layout_height="65dp"
         android:layout_below="@+id/confirmpassword"
-        android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="165dp"
+        android:layout_marginBottom="170dp"
         android:background="@drawable/custom_buttons"
-        android:text="SIGNUP NOW"
+        android:text="SignUp"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="22dp"
@@ -140,9 +139,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/orwith"
-        android:layout_below="@+id/signup"
+        android:layout_below="@+id/btnSignup"
         android:text="or continue with"
-        android:layout_marginTop="-150dp"
+        android:layout_marginTop="-140dp"
         android:textColor="#E8E6E6"
         android:layout_centerHorizontal="true"
         android:textSize="20dp"
@@ -152,35 +151,29 @@
     </TextView>
 
     <LinearLayout
+        android:id="@+id/icons"
         android:layout_width="358dp"
         android:layout_height="71dp"
-        android:id="@+id/icons"
-        android:layout_alignParentBottom="true"
         android:layout_below="@+id/orwith"
-        android:layout_marginTop="-10dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="-10dp"
         android:layout_marginBottom="50dp"
         android:gravity="center">
 
         <ImageView
+            android:id="@+id/ImgGoogle"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/google">
-
-        </ImageView>
+            android:layout_margin="10dp"
+            android:src="@drawable/google" />
 
         <ImageView
+            android:id="@+id/ImgFacebook"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/twitter">
-
-        </ImageView>
-
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/download">
-        </ImageView>
+            android:layout_margin="10dp"
+            android:src="@drawable/download" />
 
 
     </LinearLayout>
@@ -204,16 +197,18 @@
         android:layout_marginBottom="40dp">
 
     </TextView>
+
     <TextView
+        android:id="@+id/txtSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/haveanaccount"
-        android:text="LOGIN NOW"
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp">
+        android:layout_marginBottom="40dp"
+        android:layout_toRightOf="@+id/haveanaccount"
+        android:text="LOGIN NOW"
+        android:textColor="@color/white"
+        android:textStyle="bold">
 
     </TextView>
 

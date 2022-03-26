@@ -8,7 +8,7 @@ import android.os.Looper
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.rdktechnologies.skit.R
-import com.rdktechnologies.skit.ui.homescreen.HomeScreen
+import com.rdktechnologies.skit.ui.getstartedscreen.GetStartedScreen
 
 
 @SuppressLint("CustomSplashScreen")
@@ -17,18 +17,16 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, HomeScreen::class.java)
+            val intent = Intent(this, GetStartedScreen::class.java)
             startActivity(intent)
-            finish()     //setTransparentStatusBar()
-
-
+            finish()
         }, 3000)
     }
-
    private fun setTransparentStatusBar() {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
     }
+
 }

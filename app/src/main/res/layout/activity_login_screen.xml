@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login_page"
+    tools:context=".ui.loginscreen.LoginScreen"
     android:background="@drawable/splash_gradient_bg">
 
     <ImageView
@@ -80,7 +80,7 @@
     </EditText>
 
     <TextView
-        android:id="@+id/forgetpassword"
+        android:id="@+id/txtForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
@@ -93,17 +93,15 @@
     </TextView>
 
     <Button
-        android:id="@+id/custom"
+        android:id="@+id/btnLogin"
         android:layout_width="251dp"
-        android:layout_height="76dp"
-        android:layout_below="@+id/forgetpassword"
-        android:layout_alignParentBottom="true"
+        android:layout_height="65dp"
+        android:layout_below="@+id/txtForgotPassword"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="70dp"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="170dp"
         android:background="@drawable/custom_buttons"
-        android:text="Login Now"
+        android:text="Login"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="22dp"
@@ -114,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/orwith"
-        android:layout_below="@+id/custom"
+        android:layout_below="@+id/btnLogin"
         android:text="or continue with"
         android:layout_marginTop="-150dp"
         android:textColor="#E8E6E6"
@@ -126,35 +124,30 @@
     </TextView>
 
     <LinearLayout
+        android:id="@+id/icons"
         android:layout_width="358dp"
         android:layout_height="71dp"
-        android:id="@+id/icons"
-        android:layout_alignParentBottom="true"
         android:layout_below="@+id/orwith"
-        android:layout_marginTop="-10dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="-10dp"
         android:layout_marginBottom="50dp"
         android:gravity="center">
 
         <ImageView
+            android:id="@+id/imgGoogle"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/google">
+            android:layout_margin="10dp"
+            android:src="@drawable/google" />
 
-        </ImageView>
 
         <ImageView
+            android:id="@+id/imgFacebook"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/twitter">
-
-        </ImageView>
-
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/download">
-        </ImageView>
+            android:layout_margin="10dp"
+            android:src="@drawable/download"></ImageView>
 
 
     </LinearLayout>
@@ -176,16 +169,18 @@
         android:layout_marginBottom="40dp">
 
     </TextView>
+
     <TextView
+        android:id="@+id/txtSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/haveanaccount"
-        android:text="LOGIN NOW"
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp">
+        android:layout_marginBottom="40dp"
+        android:layout_toRightOf="@+id/haveanaccount"
+        android:text="SIGNUP NOW"
+        android:textColor="@color/white"
+        android:textStyle="bold">
 
     </TextView>
 
