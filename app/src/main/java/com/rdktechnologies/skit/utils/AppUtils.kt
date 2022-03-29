@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 
 class AppUtils {
 
@@ -13,6 +15,34 @@ class AppUtils {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+    fun changeFragment(containerId: Int, fragment: Fragment,fragmentActivity:FragmentActivity) {
+
+        fragmentActivity.supportFragmentManager.beginTransaction().replace(containerId, fragment).commit()
+    }
+
+    fun setFragmentWithDefaultTransition(
+        containerId: Int,
+        fragment: Fragment,
+        transition: Int,
+        fragmentActivity:FragmentActivity
+    ) {
+        fragmentActivity.supportFragmentManager.beginTransaction()
+            .setTransition(transition)
+            .replace(containerId, fragment)
+            .commit()
+    }
+
+    fun setFragmentWithCustomAnimation(
+        containerId: Int,
+        fragment: Fragment,
+        animation: Int,
+        fragmentActivity:FragmentActivity
+    ) {
+        fragmentActivity.supportFragmentManager.beginTransaction()
+            .setCustomAnimations(animation, animation)
+            .replace(containerId, fragment)
+            .commit()
     }
 
     fun closeKeyboard(activity: Activity) {

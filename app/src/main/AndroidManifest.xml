@@ -10,6 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skit">
         <activity
+            android:name=".ui.profilescreen.subactivity.AboutScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profilescreen.subactivity.ChangePasswordScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profilescreen.subactivity.ResumeScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profilescreen.subactivity.VerificationHistoryScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profilescreen.subactivity.UploadDocumentsScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profilescreen.subactivity.EditProfileScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profilescreen.ProfileScreen"
+            android:exported="false" />
+        <activity
             android:name=".ui.homescreen.HomeScreen"
             android:exported="false"
             android:label="@string/title_activity_home_screen"
