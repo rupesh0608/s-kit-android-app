@@ -25,11 +25,11 @@
             android:visibility="gone"
             android:id="@+id/ivHome"
             android:layout_weight="1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginHorizontal="10dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_outline_white" />
+            android:src="@drawable/ic_home" />
         <Button
             android:id="@+id/btnHome"
             android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
             android:layout_gravity="center"
             android:background="@drawable/custom_buttons"
             android:backgroundTint="@color/white"
-            android:drawableLeft="@drawable/ic_home_outline"
+            android:drawableLeft="@drawable/ic_home_blue"
             android:elevation="5dp"
             android:text="Home"
             android:layout_weight="1"
@@ -52,11 +52,11 @@
         <ImageView
             android:id="@+id/ivGovtExams"
             android:layout_weight="1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginHorizontal="10dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_outline_white" />
+            android:src="@drawable/ic_document" />
         <Button
             android:visibility="gone"
             android:id="@+id/btnGovtExams"
@@ -66,7 +66,7 @@
             android:layout_gravity="center"
             android:background="@drawable/custom_buttons"
             android:backgroundTint="@color/white"
-            android:drawableLeft="@drawable/ic_home_outline"
+            android:drawableLeft="@drawable/ic_document_blue"
             android:elevation="5dp"
             android:text="Govt Exams"
             android:layout_weight="1"
@@ -80,11 +80,11 @@
         <ImageView
             android:id="@+id/ivServices"
             android:layout_weight="1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginHorizontal="10dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_outline_white" />
+            android:src="@drawable/ic_service" />
         <Button
             android:visibility="gone"
             android:id="@+id/btnServices"
@@ -94,7 +94,7 @@
             android:layout_gravity="center"
             android:background="@drawable/custom_buttons"
             android:backgroundTint="@color/white"
-            android:drawableLeft="@drawable/ic_home_outline"
+            android:drawableLeft="@drawable/ic_service_blue"
             android:elevation="5dp"
             android:text="Services"
             android:layout_weight="1"
@@ -108,11 +108,11 @@
         <ImageView
             android:id="@+id/ivBookmark"
             android:layout_weight="1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginHorizontal="10dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_outline_white" />
+            android:src="@drawable/ic_bookmark" />
         <Button
             android:visibility="gone"
             android:id="@+id/btnBookmarks"
@@ -122,7 +122,7 @@
             android:layout_gravity="center"
             android:background="@drawable/custom_buttons"
             android:backgroundTint="@color/white"
-            android:drawableLeft="@drawable/ic_home_outline"
+            android:drawableLeft="@drawable/ic_bookmark_blue"
             android:elevation="5dp"
             android:text="Bookmarks"
             android:layout_weight="1"
@@ -136,11 +136,11 @@
         <ImageView
             android:id="@+id/ivProfile"
             android:layout_weight="1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginHorizontal="10dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_outline_white" />
+            android:src="@drawable/ic_profile" />
 
 
 

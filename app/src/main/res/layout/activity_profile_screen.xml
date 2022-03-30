@@ -24,7 +24,7 @@
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/ittem_setting_buttons"/>
+            tools:listitem="@layout/item_setting_buttons"/>
 
     </LinearLayout>
 

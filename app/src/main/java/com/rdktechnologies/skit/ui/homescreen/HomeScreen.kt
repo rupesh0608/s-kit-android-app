@@ -1,18 +1,16 @@
 package com.rdktechnologies.skit.ui.homescreen
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import com.rdktechnologies.skit.R
 import com.rdktechnologies.skit.ui.homescreen.fragments.BookmarksFragment
 import com.rdktechnologies.skit.ui.homescreen.fragments.GovtExamsFragment
-import com.rdktechnologies.skit.ui.homescreen.fragments.HomeFragment
+import com.rdktechnologies.skit.ui.homescreen.fragments.homefragment.HomeFragment
 import com.rdktechnologies.skit.ui.homescreen.fragments.ServicesFragment
 import com.rdktechnologies.skit.ui.profilescreen.ProfileScreen
 import com.rdktechnologies.skit.utils.AppUtils
@@ -35,10 +33,10 @@ class HomeScreen : AppCompatActivity() {
         setContentView(R.layout.activity_home_screen)
          init()
         setBottomNavigation()
-        AppUtils().changeFragment(R.id.fragmentContainer,HomeFragment(),this@HomeScreen)
+        AppUtils().changeFragment(R.id.fragmentContainer, HomeFragment(),this@HomeScreen)
 
         ivHome.setOnClickListener{
-            setBottomNavigationWithFragment(btnHome,ivHome,HomeFragment())
+            setBottomNavigationWithFragment(btnHome,ivHome, HomeFragment())
         }
         ivGovtExams.setOnClickListener{
             setBottomNavigationWithFragment(btnGovtExams,ivGovtExams,GovtExamsFragment())
