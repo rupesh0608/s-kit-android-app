@@ -8,10 +8,10 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.rdktechnologies.skit.R
-import com.rdktechnologies.skit.ui.homescreen.fragments.BookmarksFragment
-import com.rdktechnologies.skit.ui.homescreen.fragments.GovtExamsFragment
+import com.rdktechnologies.skit.ui.homescreen.fragments.bookmarkfragment.BookmarksFragment
+import com.rdktechnologies.skit.ui.homescreen.fragments.govtexamsfragment.GovtExamsFragment
 import com.rdktechnologies.skit.ui.homescreen.fragments.homefragment.HomeFragment
-import com.rdktechnologies.skit.ui.homescreen.fragments.ServicesFragment
+import com.rdktechnologies.skit.ui.homescreen.fragments.servicefragment.ServicesFragment
 import com.rdktechnologies.skit.ui.profilescreen.ProfileScreen
 import com.rdktechnologies.skit.utils.AppUtils
 
@@ -39,13 +39,13 @@ class HomeScreen : AppCompatActivity() {
             setBottomNavigationWithFragment(btnHome,ivHome, HomeFragment())
         }
         ivGovtExams.setOnClickListener{
-            setBottomNavigationWithFragment(btnGovtExams,ivGovtExams,GovtExamsFragment())
+            setBottomNavigationWithFragment(btnGovtExams,ivGovtExams, GovtExamsFragment())
         }
         ivServices.setOnClickListener{
-            setBottomNavigationWithFragment(btnServices,ivServices,ServicesFragment())
+            setBottomNavigationWithFragment(btnServices,ivServices, ServicesFragment())
         }
         ivBookmarks.setOnClickListener{
-            setBottomNavigationWithFragment(btnBookmarks,ivBookmarks,BookmarksFragment())
+            setBottomNavigationWithFragment(btnBookmarks,ivBookmarks, BookmarksFragment())
         }
         ivProfile.setOnClickListener{
             startActivity(Intent(this@HomeScreen,ProfileScreen::class.java))
