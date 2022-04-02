@@ -22,4 +22,7 @@
     <style name="Theme.Skit.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Skit.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="progressBarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@color/end_color</item>
+    </style>
 </resources>

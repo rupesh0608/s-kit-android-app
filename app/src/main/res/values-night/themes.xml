@@ -13,4 +13,15 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="Theme.Skit.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Skit.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Skit.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="progressBarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@color/end_color</item>
+    </style>
 </resources>
