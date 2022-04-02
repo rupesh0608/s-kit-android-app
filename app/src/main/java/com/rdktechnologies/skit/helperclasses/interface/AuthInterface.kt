@@ -1,6 +1,7 @@
 package com.technicalrupu.sportsapp.HelperClasses.Interface
 
 import com.rdktechnologies.skit.helperclasses.apiclasses.SignupResponse
+import com.rdktechnologies.skit.helperclasses.apiclasses.request.GoogleLoginRequest
 import com.rdktechnologies.skit.helperclasses.apiclasses.request.SignupRequest
 import retrofit2.Call
 import retrofit2.http.*
@@ -17,6 +18,9 @@ interface AuthInterface {
 //    @Headers("Content-Type:application/json")
     @POST("auth/signup")
     fun signup(@Body signupRequest: SignupRequest
+    ): Call<SignupResponse>
+    @POST("auth/google_login")
+    fun googleLogin(@Body googleLoginRequest: GoogleLoginRequest
     ): Call<SignupResponse>
 //
 //    @POST("authentication/login")

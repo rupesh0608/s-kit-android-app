@@ -15,7 +15,7 @@ class Retrofit() {
               .addInterceptor(TokenInterceptor(""))
               .build()
         val retrofit = Retrofit.Builder().client(client)
-            .baseUrl("https://7710-2405-201-3018-2028-41de-c516-15e3-8044.ngrok.io/api/app/")
+            .baseUrl("https://300e-2405-201-3018-2028-41de-c516-15e3-8044.ngrok.io/api/app/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         return retrofit.create(AuthInterface::class.java)
