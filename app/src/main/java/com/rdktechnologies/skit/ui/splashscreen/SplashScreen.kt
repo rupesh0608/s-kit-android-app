@@ -9,6 +9,8 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.rdktechnologies.skit.R
 import com.rdktechnologies.skit.ui.getstartedscreen.GetStartedScreen
+import com.rdktechnologies.skit.ui.loginscreen.LoginScreen
+import com.rdktechnologies.skit.utils.SharedPreference
 
 
 @SuppressLint("CustomSplashScreen")
@@ -17,9 +19,15 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, GetStartedScreen::class.java)
-            startActivity(intent)
-            finish()
+            if(SharedPreference(this@SplashScreen).isGetStartedPageVisited()){
+                val intent = Intent(this, LoginScreen::class.java)
+                startActivity(intent)
+                finish()
+            }else {
+                val intent = Intent(this, GetStartedScreen::class.java)
+                startActivity(intent)
+                finish()
+            }
         }, 3000)
     }
    private fun setTransparentStatusBar() {

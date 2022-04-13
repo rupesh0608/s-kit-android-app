@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.rdktechnologies.skit.R
 import com.rdktechnologies.skit.ui.signupscreen.SignUpScreen
+import com.rdktechnologies.skit.utils.SharedPreference
 
 class GetStartedScreen : AppCompatActivity() {
     lateinit var btnGetStarted: Button
@@ -16,6 +17,7 @@ class GetStartedScreen : AppCompatActivity() {
         init()
 
         btnGetStarted.setOnClickListener {
+            SharedPreference(this@GetStartedScreen).setGetStartedPageVisited(true)
             startActivity(Intent(this@GetStartedScreen, SignUpScreen::class.java))
             finish()
         }

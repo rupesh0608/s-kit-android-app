@@ -17,7 +17,6 @@ class AppUtils {
         }
     }
     fun changeFragment(containerId: Int, fragment: Fragment,fragmentActivity:FragmentActivity) {
-
         fragmentActivity.supportFragmentManager.beginTransaction().replace(containerId, fragment).commit()
     }
 
