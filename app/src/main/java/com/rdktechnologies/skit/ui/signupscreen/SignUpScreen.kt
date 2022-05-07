@@ -39,12 +39,6 @@ class SignUpScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_screen)
         init()
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build()
-
-        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
         btnSignUp.setOnClickListener {
             val firstName = etFirstName.text.toString().trim()
             val lastName = etLastName.text.toString().trim()
@@ -77,15 +71,6 @@ class SignUpScreen : AppCompatActivity() {
                     )
                 }
             }
-
-
-        }
-        imgGoogle.setOnClickListener {
-            val signInIntent: Intent = mGoogleSignInClient.signInIntent
-            startActivityForResult(signInIntent, 101)
-        }
-        imgFacebook.setOnClickListener {
-            facebookLogin()
         }
 
         txtSignIn.setOnClickListener {
@@ -93,39 +78,8 @@ class SignUpScreen : AppCompatActivity() {
         }
 
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 101) {
-            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
-        }
-    }
-
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val acct = GoogleSignIn.getLastSignedInAccount(this)
-            if (acct != null) {
-                val firstName = acct.displayName
-                val email = acct.email?.toString()
-                val picUrl = acct.photoUrl?.toString()
-                googleLogin(
-                    firstName = firstName,
-                    lastName = "Deshmukh",
-                    email = email,
-                    picUrl = picUrl.toString()
-                )
-            }
-        } catch (e: Exception) {
-
-            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
-        }
-    }
-
     private fun init() {
         btnSignUp = findViewById(R.id.btnSignup)
-        imgFacebook = findViewById(R.id.ImgFacebook)
-        imgGoogle = findViewById(R.id.ImgGoogle)
         txtSignIn = findViewById(R.id.txtSignIn)
         etFirstName = findViewById(R.id.etFirstName)
         etLastName = findViewById(R.id.etLastName)
@@ -134,62 +88,6 @@ class SignUpScreen : AppCompatActivity() {
         etConfirmPassword = findViewById(R.id.etConfirmPassword)
         progress = findViewById(R.id.progress)
 //        btnLoginText=findViewById(R.id.btnSinUpText)
-    }
-
-    private fun facebookLogin() {
-        startActivity(Intent(this, HomeScreen::class.java))
-        finish()
-    }
-
-
-    private fun googleLogin(
-        firstName: String?,
-        lastName: String?,
-        email: String?,
-        picUrl: String?
-    ) {
-        imgGoogle.isEnabled = false
-        progress.visibility = View.VISIBLE
-        val retrofit = Retrofit()
-
-        retrofit.createWithAuthInterface().googleLogin(
-            GoogleLoginRequest(
-                firstName = firstName.toString(),
-                lastName= lastName.toString(),
-                email = email.toString(),
-                pic_url = picUrl.toString()
-            )
-        ).enqueue(object : Callback<SignupResponse> {
-            override fun onResponse(
-                call: Call<SignupResponse>,
-                response: Response<SignupResponse>
-            ) {
-
-                if (response.isSuccessful && response.body() != null) {
-                    val signupResponse = response.body() as SignupResponse
-                    if (signupResponse.error) {
-                        imgGoogle.isEnabled = true
-                        progress.visibility = View.GONE
-                        AppUtils().showToast(signupResponse.message, this@SignUpScreen)
-                    } else {
-                        imgGoogle.isEnabled = true
-                        progress.visibility = View.GONE
-                        AppUtils().showToast(signupResponse.message, this@SignUpScreen)
-                        startActivity(Intent(this@SignUpScreen, HomeScreen::class.java))
-                        finish()
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
-                progress.visibility = View.GONE
-                imgGoogle.isEnabled = true
-                val message = t.message.toString()
-                AppUtils().showToast(message, this@SignUpScreen)
-            }
-        })
-
-
     }
 
     private fun simpleSignUp(
