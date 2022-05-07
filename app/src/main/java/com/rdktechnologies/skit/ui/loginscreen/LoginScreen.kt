@@ -13,8 +13,7 @@ import com.rdktechnologies.skit.ui.signupscreen.SignUpScreen
 
 class LoginScreen : AppCompatActivity() {
     lateinit var btnLogin: Button
-    lateinit var imgGoogle: ImageView
-    lateinit var imgFacebook: ImageView
+    lateinit var btnGoogleLogin: Button
     lateinit var txtSignUp: TextView
     lateinit var txtForgotPassword: TextView
 
@@ -28,11 +27,8 @@ class LoginScreen : AppCompatActivity() {
         txtSignUp.setOnClickListener {
             startActivity(Intent(this, SignUpScreen::class.java))
         }
-        imgGoogle.setOnClickListener {
+        btnGoogleLogin.setOnClickListener {
             googleLogin()
-        }
-        imgFacebook.setOnClickListener {
-            facebookLogin()
         }
         txtForgotPassword.setOnClickListener {
             startActivity(Intent(this, ForgotPasswordScreen::class.java))
@@ -41,8 +37,7 @@ class LoginScreen : AppCompatActivity() {
 
     private fun init() {
         btnLogin = findViewById(R.id.btnLogin)
-        imgGoogle = findViewById(R.id.imgGoogle)
-        imgFacebook = findViewById(R.id.imgFacebook)
+        btnGoogleLogin = findViewById(R.id.btnGoogleLogin)
         txtSignUp = findViewById(R.id.txtSignUp)
         txtForgotPassword = findViewById(R.id.txtForgotPassword)
     }
@@ -52,8 +47,4 @@ class LoginScreen : AppCompatActivity() {
         finish()
     }
 
-    private fun facebookLogin() {
-        startActivity(Intent(this,HomeScreen::class.java))
-        finish()
-    }
 }

@@ -1,5 +1,6 @@
 package com.technicalrupu.sportsapp.HelperClasses
 
+import com.rdktechnologies.skit.utils.Constants
 import com.technicalrupu.sportsapp.HelperClasses.Interface.AuthInterface
 import com.technicalrupu.sportsapp.HelperClasses.Interface.TokenInterceptor
 import okhttp3.OkHttpClient
@@ -15,7 +16,7 @@ class Retrofit() {
               .addInterceptor(TokenInterceptor(""))
               .build()
         val retrofit = Retrofit.Builder().client(client)
-            .baseUrl("https://s-kit.herokuapp.com/api/app/")
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         return retrofit.create(AuthInterface::class.java)

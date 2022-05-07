@@ -123,34 +123,24 @@
 
     </TextView>
 
-    <LinearLayout
-        android:id="@+id/icons"
-        android:layout_width="358dp"
-        android:layout_height="71dp"
+    <Button
+        android:id="@+id/btnGoogleLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
         android:layout_below="@+id/orwith"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="-10dp"
-        android:layout_marginBottom="50dp"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/imgGoogle"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/google" />
-
-
-        <ImageView
-            android:id="@+id/imgFacebook"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/facebook"></ImageView>
-
-
-    </LinearLayout>
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#F44336"
+        android:drawableStart="@drawable/google"
+        android:text="Google"
+        android:textAllCaps="false"
+        android:paddingVertical="10dp"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/white"
+        app:cornerRadius="50dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -161,22 +151,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:id="@+id/haveanaccount"
+        android:layout_below="@+id/btnGoogleLogin"
         android:layout_height="wrap_content"
         android:text="Already have an account?"
         android:textColor="@color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="88dp"
-        android:layout_marginBottom="40dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="88dp">
 
     </TextView>
 
     <TextView
         android:id="@+id/txtSignUp"
+        android:layout_below="@+id/btnGoogleLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/haveanaccount"
         android:text="SIGNUP NOW"
         android:textColor="@color/white"
