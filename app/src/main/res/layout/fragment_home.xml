@@ -22,7 +22,7 @@
             app:cardElevation="2dp">
 
             <TextView
-                android:id="@+id/text"
+                android:id="@+id/txtGm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"

@@ -4,16 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rdktechnologies.skit.R
 import com.rdktechnologies.skit.ui.profilescreen.ProfileButtonModel
+import com.rdktechnologies.skit.utils.SharedPreference
+import java.util.*
 
 
 class HomeFragment : Fragment() {
 
     lateinit var recyclerview: RecyclerView
+    lateinit var txtGm: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,8 +61,26 @@ class HomeFragment : Fragment() {
     }
 
     fun init(view: View) {
-        recyclerview =view.findViewById(R.id.home_recyclerView)
+        recyclerview = view.findViewById(R.id.home_recyclerView)
+        txtGm = view.findViewById<TextView>(R.id.txtGm)
+        txtGm.text=setWishing()
     }
 
-
+    private fun setWishing(): String {
+        val dt = Date()
+        val c = Calendar.getInstance()
+        c.time = dt
+        var message: String? = null
+        val timeOfDay: Int = c.get(Calendar.HOUR_OF_DAY)
+        if (timeOfDay in 0..11) {
+            message = "Good Morning"
+        } else if (timeOfDay in 12..15) {
+            message = "Good Afternoon"
+        } else if (timeOfDay in 16..20) {
+            message = "Good Evening"
+        } else if (timeOfDay in 21..23) {
+            message = "Good Night"
+        }
+        return "${message!!} ${SharedPreference(requireContext()).getProfile()?.firstName}"
+    }
 }
