@@ -1,187 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/splash_gradient_bg"
-    android:orientation="vertical"
-    tools:context=".ui.signupscreen.SignUpScreen">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <data>
+        <variable
+            name="SignUpViewModel"
+            type="com.rdktechnologies.skit.ui.signupscreen.SignUpViewModel" />
+    </data>
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/splash_gradient_bg"
+        android:orientation="vertical"
+        tools:context=".ui.signupscreen.SignUpScreen">
 
-        <RelativeLayout
-            android:id="@+id/mainLayout"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible">
+            android:layout_height="match_parent">
 
-
-            <ImageView
-                android:layout_width="187dp"
-                android:layout_height="181dp"
-                android:layout_marginEnd="150dp"
-                android:layout_marginRight="150dp"
-                android:src="@drawable/logo_transparent_bg"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/gettingstated"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="150dp"
-                android:text="Getting Started"
-                android:textColor="@color/white"
-                android:textSize="40dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/createaccount"
-                android:layout_width="272dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="200dp"
-                android:text="Create an account to continue!"
-                android:textColor="#E8E6E6"
-                android:textSize="18dp" />
-
-            <LinearLayout
-                android:id="@+id/fieldLayout"
+            <RelativeLayout
+                android:id="@+id/mainLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/createaccount"
-                android:orientation="vertical"
-                android:paddingHorizontal="20dp">
+                android:visibility="visible">
 
-                <EditText
-                    android:id="@+id/etFirstName"
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginVertical="5dp"
-                    android:background="@drawable/hint_button_shape"
-                    android:drawableLeft="@drawable/ic_outline_person_24"
-                    android:drawablePadding="20dp"
-                    android:hint="Name"
-                    android:padding="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
 
-                <EditText
-                    android:id="@+id/etLastName"
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginVertical="5dp"
-                    android:background="@drawable/hint_button_shape"
-                    android:drawableLeft="@drawable/ic_outline_person_24"
-                    android:drawablePadding="20dp"
-                    android:hint="last name"
-                    android:padding="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                <ImageView
+                    android:layout_width="187dp"
+                    android:layout_height="181dp"
+                    android:layout_marginEnd="150dp"
+                    android:layout_marginRight="150dp"
+                    android:src="@drawable/logo_transparent_bg"
+                    tools:ignore="ContentDescription" />
 
-                <EditText
-                    android:id="@+id/etEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginVertical="5dp"
-                    android:background="@drawable/hint_button_shape"
-                    android:drawableLeft="@drawable/ic_baseline_email_24"
-                    android:drawablePadding="20dp"
-                    android:hint="Email Address"
-                    android:padding="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
-
-                <EditText
-                    android:id="@+id/etPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_below="@+id/email"
-                    android:layout_marginVertical="5dp"
-                    android:background="@drawable/hint_button_shape"
-                    android:drawableLeft="@drawable/ic_outline_vpn_key_24"
-                    android:drawableRight="@drawable/ic_baseline_remove_red_eye_24"
-                    android:drawablePadding="20dp"
-                    android:hint="Password"
-                    android:padding="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
-
-                <EditText
-                    android:id="@+id/etConfirmPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginVertical="5dp"
-                    android:background="@drawable/hint_button_shape"
-                    android:drawableLeft="@drawable/ic_outline_vpn_key_24"
-                    android:drawableRight="@drawable/ic_baseline_remove_red_eye_24"
-                    android:drawablePadding="20dp"
-                    android:hint="Confirm Password"
-                    android:padding="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
-
-                <Button
-                    android:id="@+id/btnSignup"
-                    android:layout_width="251dp"
-                    android:layout_height="65dp"
-                    android:layout_gravity="center"
-                    android:layout_marginVertical="10dp"
-                    android:background="@drawable/custom_buttons"
-                    android:text="SignUp"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="22dp"
-                    android:textStyle="bold"
-                    app:backgroundTint="@color/white" />
-
-                <RelativeLayout
+                <TextView
+                    android:id="@+id/gettingstated"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:paddingBottom="15dp">
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="150dp"
+                    android:text="Getting Started"
+                    android:textColor="@color/white"
+                    android:textSize="40dp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/haveanaccount"
+                <TextView
+                    android:id="@+id/createaccount"
+                    android:layout_width="272dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="200dp"
+                    android:text="Create an account to continue!"
+                    android:textColor="#E8E6E6"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:id="@+id/fieldLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/createaccount"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="20dp">
+
+                    <EditText
+                        android:id="@+id/etFirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:layout_marginVertical="5dp"
+                        android:text="@={SignUpViewModel.firstName}"
+                        android:background="@drawable/hint_button_shape"
+                        android:drawableLeft="@drawable/ic_outline_person_24"
+                        android:drawablePadding="20dp"
+                        android:hint="first name"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                    <EditText
+                        android:id="@+id/etLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:layout_marginVertical="5dp"
+                        android:background="@drawable/hint_button_shape"
+                        android:drawableLeft="@drawable/ic_outline_person_24"
+                        android:drawablePadding="20dp"
+                        android:hint="last name"
+                        android:text="@={SignUpViewModel.lastName}"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                    <EditText
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:layout_marginVertical="5dp"
+                        android:background="@drawable/hint_button_shape"
+                        android:drawableLeft="@drawable/ic_baseline_email_24"
+                        android:drawablePadding="20dp"
+                        android:hint="Email Address"
+                        android:padding="10dp"
+                        android:text="@={SignUpViewModel.email}"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:layout_below="@+id/email"
+                        android:layout_marginVertical="5dp"
+                        android:background="@drawable/hint_button_shape"
+                        android:drawableLeft="@drawable/ic_outline_vpn_key_24"
+                        android:drawableRight="@drawable/ic_baseline_remove_red_eye_24"
+                        android:drawablePadding="20dp"
+                        android:hint="Password"
+                        android:text="@={SignUpViewModel.password}"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                    <EditText
+                        android:id="@+id/etConfirmPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:layout_marginVertical="5dp"
+                        android:text="@={SignUpViewModel.confirmPassword}"
+                        android:background="@drawable/hint_button_shape"
+                        android:drawableLeft="@drawable/ic_outline_vpn_key_24"
+                        android:drawableRight="@drawable/ic_baseline_remove_red_eye_24"
+                        android:drawablePadding="20dp"
+                        android:hint="Confirm Password"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                    <Button
+                        android:id="@+id/btnSignup"
+                        android:layout_width="251dp"
+                        android:layout_height="65dp"
+                        android:layout_gravity="center"
+                        android:layout_marginVertical="10dp"
+                        android:background="@drawable/custom_buttons"
+                        android:text="SignUp"
+                        android:onClick="@{SignUpViewModel::onSignUpClick}"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="22dp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/white" />
+
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Already have an account?"
-                        android:textColor="@color/white" />
+                        android:layout_gravity="center"
+                        android:paddingBottom="15dp">
 
-                    <TextView
-                        android:id="@+id/txtSignIn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/haveanaccount"
-                        android:text="LOGIN NOW"
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
-                </RelativeLayout>
-            </LinearLayout>
+                        <TextView
+                            android:id="@+id/haveanaccount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Already have an account?"
+                            android:textColor="@color/white" />
 
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-55dp"
-                android:src="@drawable/ic_illus_3">
-
-            </ImageView>
-        </RelativeLayout>
-    </ScrollView>
-
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/custom_buttons"
-        android:padding="2dp"
-        android:theme="@style/progressBarTheme"
-        android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/txtSignIn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/haveanaccount"
+                            android:text="LOGIN NOW"
+                            android:onClick="@{SignUpViewModel::onLoginNowClick}"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </LinearLayout>
 
 
-</RelativeLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-55dp"
+                    android:src="@drawable/ic_illus_3">
+
+                </ImageView>
+            </RelativeLayout>
+        </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/custom_buttons"
+            android:padding="2dp"
+            android:theme="@style/progressBarTheme"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+</layout>
+

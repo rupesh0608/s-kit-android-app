@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 
 class AppUtils {
-
     fun showToast(message: String, context: Context) {
         try {
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()

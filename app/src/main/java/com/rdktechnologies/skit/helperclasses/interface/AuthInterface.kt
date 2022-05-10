@@ -26,5 +26,5 @@ interface AuthInterface {
     ): Call<LoginResponse>
     @POST("auth/google_login")
     fun googleLogin(@Body googleLoginRequest: GoogleLoginRequest
-    ): Call<SignupResponse>
+    ): Call<LoginResponse>
 }

@@ -3,6 +3,7 @@ package com.rdktechnologies.skit.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.rdktechnologies.skit.helperclasses.apiclasses.LoginResponse
 import com.rdktechnologies.skit.helperclasses.apiclasses.ProfileData
@@ -28,6 +29,12 @@ class SharedPreference(var context:Context) {
         prefsEditor.putString(Constants.SHARED_PREFERENCE_LOGIN_RESPONSE,strValue);
         prefsEditor.apply()
     }
+    fun clearLoginResponse(){
+        val prefsEditor= sRef.edit()
+        prefsEditor.remove(Constants.SHARED_PREFERENCE_LOGIN_RESPONSE)
+        prefsEditor.apply()
+    }
+
     fun getLoginResponse(): LoginResponse? {
         val json=sRef.getString(Constants.SHARED_PREFERENCE_LOGIN_RESPONSE, "")
         if(json.equals(""))

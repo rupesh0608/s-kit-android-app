@@ -2,70 +2,38 @@ package com.rdktechnologies.skit.ui.loginscreen
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.rdktechnologies.skit.R
+import com.rdktechnologies.skit.databinding.ActivityLoginScreenBinding
 import com.rdktechnologies.skit.helperclasses.apiclasses.LoginResponse
-import com.rdktechnologies.skit.helperclasses.apiclasses.SignupResponse
-import com.rdktechnologies.skit.helperclasses.apiclasses.request.GoogleLoginRequest
-import com.rdktechnologies.skit.helperclasses.apiclasses.request.LoginRequest
 import com.rdktechnologies.skit.ui.forgotpasswordscreen.ForgotPasswordScreen
 import com.rdktechnologies.skit.ui.homescreen.HomeScreen
 import com.rdktechnologies.skit.ui.signupscreen.SignUpScreen
-import com.rdktechnologies.skit.utils.AppUtils
 import com.rdktechnologies.skit.utils.SharedPreference
-import com.technicalrupu.sportsapp.HelperClasses.Retrofit
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.rdktechnologies.skit.utils.shortToast
 
-class LoginScreen : AppCompatActivity() {
-    lateinit var btnLogin: Button
-    lateinit var btnGoogleLogin: Button
-    lateinit var txtSignUp: TextView
-    lateinit var txtForgotPassword: TextView
-    lateinit var edtEmail:EditText
-    lateinit var edtPassword:EditText
-
+class LoginScreen : AppCompatActivity(), LoginListener {
+    lateinit var binding: ActivityLoginScreenBinding
+    lateinit var mGoogleSignInClient: GoogleSignInClient
+    lateinit var viewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_screen)
-        init()
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build()
+        binding = DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_login_screen
+        ) as ActivityLoginScreenBinding
+        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        binding.loginViewModel = viewModel
+        viewModel.listener = this
 
-        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-        btnLogin.setOnClickListener {
-            AppUtils().closeKeyboard(this)
-            login(edtEmail.text.toString(),edtPassword.text.toString())
-        }
-        txtSignUp.setOnClickListener {
-            startActivity(Intent(this, SignUpScreen::class.java))
-        }
-        btnGoogleLogin.setOnClickListener {
-            val signInIntent: Intent = mGoogleSignInClient.signInIntent
-            startActivityForResult(signInIntent, 101)
-        }
-        txtForgotPassword.setOnClickListener {
-            startActivity(Intent(this, ForgotPasswordScreen::class.java))
-        }
     }
-
-    private fun init() {
-        btnLogin = findViewById(R.id.btnLogin)
-        btnGoogleLogin = findViewById(R.id.btnGoogleLogin)
-        txtSignUp = findViewById(R.id.txtSignUp)
-        txtForgotPassword = findViewById(R.id.txtForgotPassword)
-        edtEmail=findViewById(R.id.edtEmail)
-        edtPassword=findViewById(R.id.edtPassword)
-    }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -82,7 +50,7 @@ class LoginScreen : AppCompatActivity() {
                 val firstName = acct.displayName
                 val email = acct.email?.toString()
                 val picUrl = acct.photoUrl?.toString()
-                googleLogin(
+                viewModel.doGoogleLogin(
                     firstName = firstName,
                     lastName = "Deshmukh",
                     email = email,
@@ -90,86 +58,42 @@ class LoginScreen : AppCompatActivity() {
                 )
             }
         } catch (e: Exception) {
-
-            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+            shortToast(e.message!!)
         }
     }
 
+    override fun onError(message: String) {
+        shortToast(message)
+    }
 
-private fun login(email:String,password:String){
-    val retrofit = Retrofit()
-
-    retrofit.createWithAuthInterface().login(
-        LoginRequest(
-            email = email,
-            password=password
+    override fun onStarted() {
+        mGoogleSignInClient = GoogleSignIn.getClient(
+            this,
+            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build()
         )
-    ).enqueue(object : Callback<LoginResponse> {
-        override fun onResponse(
-            call: Call<LoginResponse>,
-            response: Response<LoginResponse>
-        ) {
+    }
 
-            if (response.isSuccessful && response.body() != null) {
-                val loginResponse = response.body() as LoginResponse
-                if (loginResponse.error!!) {
-                    AppUtils().showToast(loginResponse.message!!, this@LoginScreen)
-                } else {
-                    SharedPreference(this@LoginScreen).setLoginResponse(loginResponse)
-                    AppUtils().showToast(loginResponse.message!!, this@LoginScreen)
-                    startActivity(Intent(this@LoginScreen, HomeScreen::class.java))
-                    finish()
-                }
-            }
-        }
+    override fun onSuccess(response: LoginResponse) {
+        SharedPreference(this@LoginScreen).setLoginResponse(response)
+        shortToast(response.message!!)
+        startActivity(Intent(this@LoginScreen, HomeScreen::class.java))
+        finish()
+    }
 
-        override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-            val message = t.message.toString()
-            AppUtils().showToast(message, this@LoginScreen)
-        }
-    })
-}
+    override fun goToSignUpScreen() {
+        startActivity(Intent(this, SignUpScreen::class.java))
+        finish()
+    }
 
-    private fun googleLogin(
-        firstName: String?,
-        lastName: String?,
-        email: String?,
-        picUrl: String?
-    ) {
-        val retrofit = Retrofit()
+    override fun googleLogin() {
+        val signInIntent: Intent = mGoogleSignInClient.signInIntent
+        startActivityForResult(signInIntent, 101)
+    }
 
-        retrofit.createWithAuthInterface().googleLogin(
-            GoogleLoginRequest(
-                firstName = firstName.toString(),
-                lastName= lastName.toString(),
-                email = email.toString(),
-                pic_url = picUrl.toString()
-            )
-        ).enqueue(object : Callback<SignupResponse> {
-            override fun onResponse(
-                call: Call<SignupResponse>,
-                response: Response<SignupResponse>
-            ) {
-
-                if (response.isSuccessful && response.body() != null) {
-                    val signupResponse = response.body() as SignupResponse
-                    if (signupResponse.error) {
-                        AppUtils().showToast(signupResponse.message, this@LoginScreen)
-                    } else {
-                        AppUtils().showToast(signupResponse.message, this@LoginScreen)
-                        startActivity(Intent(this@LoginScreen, HomeScreen::class.java))
-                        finish()
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
-                val message = t.message.toString()
-                AppUtils().showToast(message, this@LoginScreen)
-            }
-        })
-
-
+    override fun goToForgotPasswordScreen() {
+        startActivity(Intent(this, ForgotPasswordScreen::class.java))
     }
 
 

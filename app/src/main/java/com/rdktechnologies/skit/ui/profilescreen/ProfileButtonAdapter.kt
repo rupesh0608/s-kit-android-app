@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rdktechnologies.skit.R
 import com.rdktechnologies.skit.ui.profilescreen.ProfileButtonModel
 import com.rdktechnologies.skit.ui.profilescreen.subactivity.*
+import com.rdktechnologies.skit.utils.Constants
 
 class ProfileButtonAdapter(var activity: Activity, val list: ArrayList<ProfileButtonModel>):RecyclerView.Adapter<ProfileButtonAdapter.ViewHolder>() {
 
@@ -55,7 +56,7 @@ class ProfileButtonAdapter(var activity: Activity, val list: ArrayList<ProfileBu
          }
 
         private fun logout() {
-            Toast.makeText( itemView.context,"logout",Toast.LENGTH_SHORT).show()
+            activity.setResult(Constants.ACTIVITY_RESULT_LOGOUT)
             activity.finish()
         }
 
