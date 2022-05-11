@@ -1,33 +1,50 @@
 package com.rdktechnologies.skit.ui.profilescreen
 
+import android.annotation.SuppressLint
+import android.database.DatabaseUtils
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.rdktechnologies.skit.R
+import com.rdktechnologies.skit.databinding.ActivityProfileScreenBinding
+import com.rdktechnologies.skit.databinding.ActivitySplashScreenBinding
+import com.rdktechnologies.skit.ui.splashscreen.SplashViewModel
+import com.rdktechnologies.skit.utils.SharedPreference
 
-class ProfileScreen : AppCompatActivity() {
-
-    lateinit var recyclerview:RecyclerView
+class ProfileScreen : AppCompatActivity() ,ProfileListener{
+    lateinit var binding: ActivityProfileScreenBinding
+    lateinit var viewModel: ProfileViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_screen)
-        init()
-        val data = ArrayList<ProfileButtonModel>()
-        data.add(ProfileButtonModel(text = "Edit Profile", icon = R.drawable.ic_edit_profile))
-        data.add(ProfileButtonModel(text = "Upload Documents", icon = R.drawable.ic_upload_document_icon))
-        data.add(ProfileButtonModel(text = "Verification History", icon = R.drawable.ic_verification_history_icon))
-        data.add(ProfileButtonModel(text = "Download Resume", icon = R.drawable.ic_download_resume_icon))
-        data.add(ProfileButtonModel(text = "Change Password", icon = R.drawable.ic_change_password_icon))
-        data.add(ProfileButtonModel(text = "About", icon = R.drawable.ic_about_icon))
-        data.add(ProfileButtonModel(text = "Logout",icon=R.drawable.ic_logout_icon))
+       binding=DataBindingUtil.setContentView(this,R.layout.activity_profile_screen) as ActivityProfileScreenBinding
+        viewModel= ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        binding.profileViewModel=viewModel
+        viewModel.profileListener = this
+        viewModel.onStarted()
+
+
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun setDetails() {
+       viewModel.name="${SharedPreference(this).getProfile()?.firstName} ${SharedPreference(this).getProfile()?.lastName}"
+        if(SharedPreference(this).getProfile()?.picUrl==null){
+            Glide.with(this).load("https://source.unsplash.com/user/c_v_r/100x100").into(binding.imgProfile);
+        }else{
+            Glide.with(this).load(SharedPreference(this).getProfile()?.picUrl).into(binding.imgProfile);
+        }
+    }
+
+    override fun loadRecyclerView(data:ArrayList<ProfileButtonModel>) {
         val adapter = ProfileButtonAdapter(this,data)
-        recyclerview.layoutManager = LinearLayoutManager(this)
-        recyclerview.adapter = adapter
-
+        binding.settingRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.settingRecyclerView.adapter = adapter
     }
 
-    private fun init(){
-        recyclerview=findViewById(R.id.settingRecyclerView)
-    }
 }

@@ -1,50 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F4F4F9"
-    android:orientation="vertical"
-    tools:context=".ui.profilescreen.ProfileScreen">
-
-    <LinearLayout
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="ProfileViewModel"
+            type="com.rdktechnologies.skit.ui.profilescreen.ProfileViewModel" />
+    </data>
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="#F4F4F9"
+        android:orientation="vertical"
+        tools:context=".ui.profilescreen.ProfileScreen">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/profile_box_bg"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="10dp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_edit_profile_1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:paddingBottom="20dp"
-                android:src="@drawable/ic_edit_profile_2" />
-        </RelativeLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/settingRecyclerView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            tools:listitem="@layout/item_setting_buttons" />
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-</ScrollView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/profile_box_bg"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="10dp"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/imgProfile"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:src="@drawable/ic_launcher_background"
+                    app:civ_border_width="5dp"
+                    android:layout_centerInParent="true"
+                    app:civ_border_color="#fff"/>
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@={ProfileViewModel.name}"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/imgProfile"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha=".7"
+                    android:src="@drawable/ic_edit_profile_1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:paddingBottom="20dp"
+                    android:alpha=".7"
+                    android:src="@drawable/ic_edit_profile_2" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/settingRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                tools:listitem="@layout/item_setting_buttons" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>
+

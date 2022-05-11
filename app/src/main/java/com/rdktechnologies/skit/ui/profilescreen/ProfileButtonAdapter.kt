@@ -9,12 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.rdktechnologies.skit.R
-import com.rdktechnologies.skit.ui.profilescreen.ProfileButtonModel
 import com.rdktechnologies.skit.ui.profilescreen.subactivity.*
+import com.rdktechnologies.skit.ui.profilescreen.subactivity.editprofile.EditProfileScreen
 import com.rdktechnologies.skit.utils.Constants
 
 class ProfileButtonAdapter(var activity: Activity, val list: ArrayList<ProfileButtonModel>):RecyclerView.Adapter<ProfileButtonAdapter.ViewHolder>() {
@@ -81,7 +80,7 @@ class ProfileButtonAdapter(var activity: Activity, val list: ArrayList<ProfileBu
         }
 
         private fun openEditProfileScreen() {
-            activity.startActivity(Intent(activity,EditProfileScreen::class.java))
+            activity.startActivity(Intent(activity, EditProfileScreen::class.java))
         }
 
     }
