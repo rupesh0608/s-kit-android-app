@@ -14,6 +14,6 @@ class SplashViewModel :ViewModel(){
     }
     fun startHandler(){
         splashListener?.onStarted()
-         splashListener?.startHandler()
+        splashListener?.checkPermissions()
     }
 }
