@@ -1,4 +1,4 @@
-package com.rdktechnologies.skit.ui.profilescreen.subactivity
+package com.rdktechnologies.skit.ui.profilescreen.subactivity.changepassword
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

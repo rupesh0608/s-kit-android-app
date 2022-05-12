@@ -13,7 +13,9 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.rdktechnologies.skit.R
 import com.rdktechnologies.skit.ui.profilescreen.subactivity.*
+import com.rdktechnologies.skit.ui.profilescreen.subactivity.changepassword.ChangePasswordScreen
 import com.rdktechnologies.skit.ui.profilescreen.subactivity.editprofile.EditProfileScreen
+import com.rdktechnologies.skit.ui.profilescreen.subactivity.uploaddocument.UploadDocumentsScreen
 import com.rdktechnologies.skit.utils.Constants
 
 class ProfileButtonAdapter(var activity: Activity, val list: ArrayList<ProfileButtonModel>):RecyclerView.Adapter<ProfileButtonAdapter.ViewHolder>() {
@@ -64,7 +66,7 @@ class ProfileButtonAdapter(var activity: Activity, val list: ArrayList<ProfileBu
         }
 
         private fun openChangePasswordScreen() {
-            activity.startActivity(Intent(activity,ChangePasswordScreen::class.java))
+            activity.startActivity(Intent(activity, ChangePasswordScreen::class.java))
         }
 
         private fun openResumeScreen() {
@@ -76,7 +78,7 @@ class ProfileButtonAdapter(var activity: Activity, val list: ArrayList<ProfileBu
         }
 
         private fun openUploadDocumentsScreen() {
-            activity.startActivity(Intent(activity,UploadDocumentsScreen::class.java))
+            activity.startActivity(Intent(activity, UploadDocumentsScreen::class.java))
         }
 
         private fun openEditProfileScreen() {

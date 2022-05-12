@@ -14,7 +14,7 @@
             android:name=".ui.profilescreen.subactivity.AboutScreen"
             android:exported="false" />
         <activity
-            android:name=".ui.profilescreen.subactivity.ChangePasswordScreen"
+            android:name=".ui.profilescreen.subactivity.changepassword.ChangePasswordScreen"
             android:exported="false" />
         <activity
             android:name=".ui.profilescreen.subactivity.ResumeScreen"
@@ -23,7 +23,7 @@
             android:name=".ui.profilescreen.subactivity.VerificationHistoryScreen"
             android:exported="false" />
         <activity
-            android:name=".ui.profilescreen.subactivity.UploadDocumentsScreen"
+            android:name=".ui.profilescreen.subactivity.uploaddocument.UploadDocumentsScreen"
             android:exported="false" />
         <activity
             android:name=".ui.profilescreen.subactivity.editprofile.EditProfileScreen"

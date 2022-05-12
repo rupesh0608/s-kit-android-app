@@ -1,12 +1,12 @@
-package com.rdktechnologies.skit.ui.profilescreen.subactivity
+package com.rdktechnologies.skit.ui.profilescreen.subactivity.uploaddocument
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.rdktechnologies.skit.R
 
-class EditProfileScreen : AppCompatActivity() {
+class UploadDocumentsScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_profile_screen)
+        setContentView(R.layout.activity_upload_documents_screen)
     }
 }
