@@ -1,5 +1,6 @@
 package com.rdktechnologies.skit.ui.loginscreen
 
+import androidx.lifecycle.LiveData
 import com.rdktechnologies.skit.helperclasses.apiclasses.LoginResponse
 
 interface LoginListener {
@@ -9,4 +10,5 @@ interface LoginListener {
    fun goToSignUpScreen()
    fun googleLogin()
    fun goToForgotPasswordScreen()
+   fun showProgress()
 }

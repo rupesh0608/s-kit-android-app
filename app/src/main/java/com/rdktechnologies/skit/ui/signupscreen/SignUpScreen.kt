@@ -28,6 +28,7 @@ class SignUpScreen : AppCompatActivity(),SignUpListener {
         viewModel= ViewModelProviders.of(this).get(SignUpViewModel::class.java)
         binding.signUpViewModel=viewModel
         viewModel.listener=this
+        viewModel.context=this
     }
 
     override fun onError(message: String) {

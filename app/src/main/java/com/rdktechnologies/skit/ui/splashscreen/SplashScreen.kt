@@ -17,6 +17,7 @@ import com.rdktechnologies.skit.R
 import com.rdktechnologies.skit.databinding.ActivitySplashScreenBinding
 import com.rdktechnologies.skit.helperclasses.apiclasses.LoginResponse
 import com.rdktechnologies.skit.ui.getstartedscreen.GetStartedScreen
+import com.rdktechnologies.skit.ui.homescreen.HomeScreen
 import com.rdktechnologies.skit.ui.loginscreen.LoginScreen
 import com.rdktechnologies.skit.ui.permissioninfoscreen.PermissionInfoScreen
 import com.rdktechnologies.skit.ui.profilescreen.subactivity.uploaddocument.UploadDocumentsScreen
@@ -65,7 +66,7 @@ class SplashScreen : AppCompatActivity(), SplashListener {
     }
 
     override fun onSuccess(loginResponse: LoginResponse?) {
-        val intent = Intent(this, UploadDocumentsScreen::class.java)
+        val intent = Intent(this, HomeScreen::class.java)
         startActivity(intent)
         finish()
     }

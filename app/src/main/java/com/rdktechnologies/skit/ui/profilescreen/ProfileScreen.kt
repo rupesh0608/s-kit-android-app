@@ -1,6 +1,7 @@
 package com.rdktechnologies.skit.ui.profilescreen
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.database.DatabaseUtils
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,18 +27,20 @@ class ProfileScreen : AppCompatActivity() ,ProfileListener{
         binding.profileViewModel=viewModel
         viewModel.profileListener = this
         viewModel.onStarted()
+    }
 
-
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        setDetails()
     }
 
     @SuppressLint("SetTextI18n")
     override fun setDetails() {
-       viewModel.name="${SharedPreference(this).getProfile()?.firstName} ${SharedPreference(this).getProfile()?.lastName}"
+       binding.txtName.text="${SharedPreference(this).getProfile()?.firstName} ${SharedPreference(this).getProfile()?.lastName}"
         if(SharedPreference(this).getProfile()?.picUrl==null){
-            Glide.with(this).load("https://source.unsplash.com/user/c_v_r/100x100").into(binding.imgProfile);
+            Glide.with(this).load("https://source.unsplash.com/user/c_v_r/100x100").into(binding.imgProfile)
         }else{
-            Glide.with(this).load(SharedPreference(this).getProfile()?.picUrl).into(binding.imgProfile);
+            Glide.with(this).load(SharedPreference(this).getProfile()?.picUrl).into(binding.imgProfile)
         }
     }
 

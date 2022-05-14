@@ -6,7 +6,6 @@ import com.rdktechnologies.skit.ui.splashscreen.SplashListener
 import com.rdktechnologies.skit.utils.SharedPreference
 
 class ProfileViewModel:ViewModel(){
-    var name:String?="Rupesh Kumar Deshmukh1"
     var profileListener: ProfileListener?=null
     fun onStarted(){
         profileListener?.setDetails()

@@ -82,7 +82,7 @@ class ProfileButtonAdapter(var activity: Activity, val list: ArrayList<ProfileBu
         }
 
         private fun openEditProfileScreen() {
-            activity.startActivity(Intent(activity, EditProfileScreen::class.java))
+            activity.startActivityForResult(Intent(activity, EditProfileScreen::class.java),102)
         }
 
     }

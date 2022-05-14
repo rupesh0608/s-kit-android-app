@@ -1,5 +1,7 @@
 package com.rdktechnologies.skit.ui.signupscreen
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.view.View
 import androidx.lifecycle.ViewModel
 import com.rdktechnologies.skit.helperclasses.apiclasses.SignupResponse
@@ -16,12 +18,14 @@ class SignUpViewModel : ViewModel() {
     var password: String? = ""
     var confirmPassword: String? = ""
     var listener: SignUpListener? = null
+    @SuppressLint("StaticFieldLeak")
+    var context:Context?=null
 
     fun onSignUpClick(view: View) {
         listener?.onStarted()
         val signupRequest =
             SignupRequest(firstName!!, lastName!!, email!!, password!!, confirmPassword!!)
-        Retrofit().createWithAuthInterface().signup(
+        Retrofit(context!!).createWithOutInterface().signup(
             signupRequest
         ).enqueue(object : Callback<SignupResponse> {
             override fun onResponse(

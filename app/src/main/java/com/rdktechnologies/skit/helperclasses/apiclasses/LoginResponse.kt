@@ -13,5 +13,6 @@ data class ProfileData(
     var lastName:String?=null,
     var email:String?=null,
     var picUrl:String?= null,
+     var phoneNumber:Long?=null,
     var isGoogleLogin:Boolean?=false
 )

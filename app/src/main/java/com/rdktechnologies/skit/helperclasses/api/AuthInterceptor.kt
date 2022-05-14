@@ -1,4 +1,4 @@
-package com.technicalrupu.sportsapp.HelperClasses.Interface
+package com.technicalrupu.sportsapp.HelperClasses.Api
 
 import okhttp3.Credentials
 import okhttp3.Interceptor

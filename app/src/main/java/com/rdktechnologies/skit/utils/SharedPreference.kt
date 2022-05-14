@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import android.widget.Toast
 import com.google.gson.Gson
 import com.rdktechnologies.skit.helperclasses.apiclasses.LoginResponse
 import com.rdktechnologies.skit.helperclasses.apiclasses.ProfileData
@@ -60,8 +61,8 @@ class SharedPreference(var context:Context) {
     fun setProfile(profile:ProfileData){
         val json=sRef.getString(Constants.SHARED_PREFERENCE_LOGIN_RESPONSE, "")
         val obj= Gson().fromJson(json, LoginResponse::class.java)
-        obj.data=profile
         val prefsEditor= sRef.edit()
+        obj.data=profile
         val strValue=Gson().toJson(obj)
         prefsEditor.putString(Constants.SHARED_PREFERENCE_LOGIN_RESPONSE,strValue);
         prefsEditor.apply()

@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -17,7 +19,9 @@ import com.rdktechnologies.skit.ui.forgotpasswordscreen.ForgotPasswordScreen
 import com.rdktechnologies.skit.ui.homescreen.HomeScreen
 import com.rdktechnologies.skit.ui.signupscreen.SignUpScreen
 import com.rdktechnologies.skit.utils.SharedPreference
+import com.rdktechnologies.skit.utils.gone
 import com.rdktechnologies.skit.utils.shortToast
+import com.rdktechnologies.skit.utils.show
 
 class LoginScreen : AppCompatActivity(), LoginListener {
     lateinit var binding: ActivityLoginScreenBinding
@@ -32,6 +36,9 @@ class LoginScreen : AppCompatActivity(), LoginListener {
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         binding.loginViewModel = viewModel
         viewModel.listener = this
+        viewModel.context=this
+        binding.progressView.gone()
+        binding.progressLayout.gone()
 
     }
 
@@ -47,15 +54,16 @@ class LoginScreen : AppCompatActivity(), LoginListener {
         try {
             val acct = GoogleSignIn.getLastSignedInAccount(this)
             if (acct != null) {
-                val firstName = acct.displayName
-                val email = acct.email?.toString()
-                val picUrl = acct.photoUrl?.toString()
-                viewModel.doGoogleLogin(
-                    firstName = firstName,
-                    lastName = "Deshmukh",
-                    email = email,
-                    picUrl = picUrl.toString()
-                )
+                viewModel.email= acct.email?.toString()
+                viewModel.picUrl= acct.photoUrl?.toString()
+                if (acct.displayName!!.lastIndexOf(' ')== -1) {
+                    viewModel.firstName=acct.displayName!!
+                    viewModel.lastName=""
+                }else{
+                    viewModel.firstName = acct.displayName!!.substring(0,acct.displayName!!.lastIndexOf(' '))
+                    viewModel.lastName= acct.displayName!!.substring(acct.displayName!!.lastIndexOf(' ') + 1)
+                }
+                viewModel.googleLoginApiCall()
             }
         } catch (e: Exception) {
             shortToast(e.message!!)
@@ -63,6 +71,8 @@ class LoginScreen : AppCompatActivity(), LoginListener {
     }
 
     override fun onError(message: String) {
+        binding.progressView.gone()
+        binding.progressLayout.gone()
         shortToast(message)
     }
 
@@ -75,15 +85,20 @@ class LoginScreen : AppCompatActivity(), LoginListener {
         )
     }
 
-    override fun onSuccess(response: LoginResponse) {
-        SharedPreference(this@LoginScreen).setLoginResponse(response)
-        shortToast(response.message!!)
-        startActivity(Intent(this@LoginScreen, HomeScreen::class.java))
-        finish()
+
+    override fun onSuccess(response:LoginResponse) {
+            binding.progressView.gone()
+            binding.progressLayout.gone()
+            shortToast(response.message!!)
+        if(response.data?.firstName!=null){
+            SharedPreference(this@LoginScreen).setLoginResponse(response)
+            startActivity(Intent(this@LoginScreen, HomeScreen::class.java))
+            finish()
+        }
     }
 
     override fun goToSignUpScreen() {
-        startActivity(Intent(this, SignUpScreen::class.java))
+        startActivity(Intent(this@LoginScreen, SignUpScreen::class.java))
         finish()
     }
 
@@ -94,6 +109,11 @@ class LoginScreen : AppCompatActivity(), LoginListener {
 
     override fun goToForgotPasswordScreen() {
         startActivity(Intent(this, ForgotPasswordScreen::class.java))
+    }
+
+    override fun showProgress() {
+        binding.progressLayout.show()
+        binding.progressView.show()
     }
 
 
