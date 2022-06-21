@@ -14,6 +14,7 @@ import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 import kotlin.collections.ArrayList
 
@@ -34,13 +35,22 @@ interface MyApi {
 
     @Multipart
     @POST("profile/edit_profile")
-    fun editProfile(
+    fun editProfileWithImage(
         @Query("firstName") firstName: String,
         @Query("lastName") lastName: String,
         @Query("userId") userId: Long,
         @Query("email") email: String,
         @Query("phoneNumber") phoneNumber: Long?,
-        @Part profilePic: MultipartBody.Part?=null,
+        @Part profilePic: MultipartBody.Part,
+    ): Call<LoginResponse>
+
+    @POST("profile/edit_profile")
+    fun editProfileWithOutImage(
+        @Query("firstName") firstName: String,
+        @Query("lastName") lastName: String,
+        @Query("userId") userId: Long,
+        @Query("email") email: String,
+        @Query("phoneNumber") phoneNumber: Long?,
     ): Call<LoginResponse>
 
 

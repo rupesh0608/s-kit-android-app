@@ -14,5 +14,10 @@ data class ProfileData(
     var email:String?=null,
     var picUrl:String?= null,
      var phoneNumber:Long?=null,
-    var isGoogleLogin:Boolean?=false
+    var isGoogleLogin:Boolean?=false,
+var verification:Verification?=null
+)
+data class Verification(
+    var count:Int?=0,
+    var status:String?="none"
 )

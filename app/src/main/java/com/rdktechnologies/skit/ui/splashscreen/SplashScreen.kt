@@ -20,6 +20,7 @@ import com.rdktechnologies.skit.ui.getstartedscreen.GetStartedScreen
 import com.rdktechnologies.skit.ui.homescreen.HomeScreen
 import com.rdktechnologies.skit.ui.loginscreen.LoginScreen
 import com.rdktechnologies.skit.ui.permissioninfoscreen.PermissionInfoScreen
+import com.rdktechnologies.skit.ui.profilescreen.ProfileScreen
 import com.rdktechnologies.skit.ui.profilescreen.subactivity.uploaddocument.UploadDocumentsScreen
 import com.rdktechnologies.skit.utils.AppPermissions
 import com.rdktechnologies.skit.utils.SharedPreference
@@ -66,9 +67,22 @@ class SplashScreen : AppCompatActivity(), SplashListener {
     }
 
     override fun onSuccess(loginResponse: LoginResponse?) {
-        val intent = Intent(this, HomeScreen::class.java)
-        startActivity(intent)
-        finish()
+        if(loginResponse?.data?.verification!!.count==0 && loginResponse.data?.verification!!.status=="none" ) {
+            val intent = Intent(this, UploadDocumentsScreen::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
+//        if(loginResponse.data?.verification!!.count!! ==1 && loginResponse.data?.verification!!.status=="pending" ) {
+//            val intent = Intent(this, UploadDocumentsScreen::class.java)
+//            startActivity(intent)
+//            finish()
+//            return
+//        }
+            val intent = Intent(this,HomeScreen::class.java)
+            startActivity(intent)
+            finish()
+        return
     }
 
     override fun onFailure() {

@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -17,6 +15,8 @@ import com.rdktechnologies.skit.databinding.ActivityLoginScreenBinding
 import com.rdktechnologies.skit.helperclasses.apiclasses.LoginResponse
 import com.rdktechnologies.skit.ui.forgotpasswordscreen.ForgotPasswordScreen
 import com.rdktechnologies.skit.ui.homescreen.HomeScreen
+import com.rdktechnologies.skit.ui.profilescreen.ProfileScreen
+import com.rdktechnologies.skit.ui.profilescreen.subactivity.uploaddocument.UploadDocumentsScreen
 import com.rdktechnologies.skit.ui.signupscreen.SignUpScreen
 import com.rdktechnologies.skit.utils.SharedPreference
 import com.rdktechnologies.skit.utils.gone
@@ -87,13 +87,25 @@ class LoginScreen : AppCompatActivity(), LoginListener {
 
 
     override fun onSuccess(response:LoginResponse) {
+        SharedPreference(this@LoginScreen).setLoginResponse(response as LoginResponse)
             binding.progressView.gone()
             binding.progressLayout.gone()
             shortToast(response.message!!)
-        if(response.data?.firstName!=null){
-            SharedPreference(this@LoginScreen).setLoginResponse(response)
-            startActivity(Intent(this@LoginScreen, HomeScreen::class.java))
-            finish()
+        if(response.data?.verification!=null){
+            if(response.data!!.verification!!.count==0 && response.data!!.verification!!.status=="none"){
+                startActivity(Intent(this@LoginScreen, UploadDocumentsScreen::class.java))
+                finish()
+                return
+            }
+            if(response.data!!.verification!!.count!! > 0 && response.data!!.verification!!.status=="pending"){
+                startActivity(Intent(this@LoginScreen,ProfileScreen::class.java))
+                finish()
+                return
+            }
+                SharedPreference(this@LoginScreen).setLoginResponse(response)
+                startActivity(Intent(this@LoginScreen, HomeScreen::class.java))
+                finish()
+                return
         }
     }
 

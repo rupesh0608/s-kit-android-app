@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+
 android {
     compileSdk 32
 
@@ -63,5 +64,4 @@ dependencies {
     //google signin
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
     implementation "com.squareup.okhttp3:okhttp:4.7.2"
-
 }
