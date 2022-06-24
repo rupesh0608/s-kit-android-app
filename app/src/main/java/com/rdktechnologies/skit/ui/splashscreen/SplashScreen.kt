@@ -67,13 +67,7 @@ class SplashScreen : AppCompatActivity(), SplashListener {
     }
 
     override fun onSuccess(loginResponse: LoginResponse?) {
-        if(loginResponse?.data?.verification!!.count==0 && loginResponse.data?.verification!!.status=="none" ) {
-            val intent = Intent(this, UploadDocumentsScreen::class.java)
-            startActivity(intent)
-            finish()
-            return
-        }
-//        if(loginResponse.data?.verification!!.count!! ==1 && loginResponse.data?.verification!!.status=="pending" ) {
+//        if(loginResponse?.data?.verification!!.count==0 && loginResponse.data?.verification!!.status=="none" ) {
 //            val intent = Intent(this, UploadDocumentsScreen::class.java)
 //            startActivity(intent)
 //            finish()

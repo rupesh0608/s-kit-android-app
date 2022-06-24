@@ -1,6 +1,7 @@
 package com.technicalrupu.sportsapp.HelperClasses.Api
 
 import com.rdktechnologies.skit.helperclasses.apiclasses.LoginResponse
+import com.rdktechnologies.skit.helperclasses.apiclasses.ServiceResponse
 import com.rdktechnologies.skit.helperclasses.apiclasses.SignupResponse
 import com.rdktechnologies.skit.helperclasses.apiclasses.request.GoogleLoginRequest
 import com.rdktechnologies.skit.helperclasses.apiclasses.request.LoginRequest
@@ -23,18 +24,18 @@ interface MyApi {
 
 
 //    @Headers("Content-Type:application/json")
-    @POST("auth/signup")
+    @POST("app/auth/signup")
     fun signup(@Body signupRequest: SignupRequest
     ): Call<SignupResponse>
-    @POST("auth/login")
+    @POST("app/auth/login")
     fun login(@Body loginRequest: LoginRequest
     ): Call<LoginResponse>
-    @POST("auth/google_login")
+    @POST("app/auth/google_login")
     fun googleLogin(@Body googleLoginRequest: GoogleLoginRequest
     ): Call<LoginResponse>
 
     @Multipart
-    @POST("profile/edit_profile")
+    @POST("app/profile/edit_profile")
     fun editProfileWithImage(
         @Query("firstName") firstName: String,
         @Query("lastName") lastName: String,
@@ -44,7 +45,7 @@ interface MyApi {
         @Part profilePic: MultipartBody.Part,
     ): Call<LoginResponse>
 
-    @POST("profile/edit_profile")
+    @POST("app/profile/edit_profile")
     fun editProfileWithOutImage(
         @Query("firstName") firstName: String,
         @Query("lastName") lastName: String,
@@ -52,6 +53,9 @@ interface MyApi {
         @Query("email") email: String,
         @Query("phoneNumber") phoneNumber: Long?,
     ): Call<LoginResponse>
+
+    @GET("admin/services/all")
+    fun getAllServices(): Call<ServiceResponse>
 
 
     companion object{
