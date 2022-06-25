@@ -37,6 +37,7 @@ class HomeFragment : Fragment() {
     lateinit var jobTab: TextView
     lateinit var coursesTab:TextView
     lateinit var heading1:TextView
+    var activeTab=1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,10 +50,19 @@ class HomeFragment : Fragment() {
     }
 private fun initializeListeners(){
     cardSearch.setOnClickListener{
-        openMoreJobsCoursesPage("job")
+        if(activeTab==1){
+            openMoreJobsCoursesPage("job")
+        }else{
+            openMoreJobsCoursesPage("course")
+        }
+
     }
     edtSearch.setOnClickListener {
-        openMoreJobsCoursesPage("job")
+        if(activeTab==1){
+            openMoreJobsCoursesPage("job")
+        }else{
+            openMoreJobsCoursesPage("course")
+        }
     }
     jobTab.setOnClickListener {
         edtSearch.hint="Search Jobs..."
