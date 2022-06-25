@@ -1,41 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-    <androidx.cardview.widget.CardView
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="5dp"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:id="@+id/llLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="5dp"
-        android:padding="5dp"
         android:orientation="horizontal"
-        app:cardElevation="2dp"
-        app:cardCornerRadius="8dp">
-        <ImageView
-            android:id="@+id/iv_item"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:src="@drawable/ic_launcher_background"/>
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_gravity="start|center"
-            android:layout_marginLeft="100dp"
-            android:text="demo text"
-            android:textSize="20sp"
-            android:textColor="#404144"
-            android:textAllCaps="false"
-            android:layout_height="wrap_content"/>
-    <ImageView
-        android:layout_width="8dp"
-        android:layout_height="15dp"
-        android:layout_gravity="end|center_vertical"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp"
-        android:src="@drawable/ic_right_icon"/>
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp">
 
-    </androidx.cardview.widget.CardView>
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/image"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_launcher_background"
+            android:scaleType="fitXY"
+            app:riv_corner_radius="5dp"
+            android:elevation="3dp"
+            android:layout_height="80dp"
+            android:layout_width="100dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="General Manager, Project Officer,Dy. Project Officer and other -26 Posts"
+                android:textColor="#2F6B99"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="hindustan shipyard Limited"
+                android:textColor="#7D7E80"
+                android:textSize="11sp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textStyle="bold|italic" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".0001"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_bookmark" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

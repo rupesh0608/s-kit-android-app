@@ -167,13 +167,14 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/showAll"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Show all"
                 android:textColor="#7D7E80"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="15sp"
+                android:textStyle="bold|italic" />
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

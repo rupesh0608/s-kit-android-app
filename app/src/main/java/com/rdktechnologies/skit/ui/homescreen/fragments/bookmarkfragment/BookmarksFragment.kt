@@ -172,11 +172,11 @@ class BookmarksFragment : Fragment() {
     }
 
     fun loadCourseRecyclerView(list:ArrayList<Jobs>){
-        val adapter =
-            CourseAdapter(list,list.size)
-        courseRecyclerview.layoutManager = LinearLayoutManager(activity)
-        courseRecyclerview.visibility=View.VISIBLE
-        courseRecyclerview.adapter = adapter
+//        val adapter =
+//            CourseAdapter(list,list.size)
+//        courseRecyclerview.layoutManager = LinearLayoutManager(activity)
+//        courseRecyclerview.visibility=View.VISIBLE
+//        courseRecyclerview.adapter = adapter
     }
     fun loadJobRecyclerView(list:ArrayList<Jobs>){
         val adapter =

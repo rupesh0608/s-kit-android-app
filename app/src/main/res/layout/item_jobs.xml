@@ -14,78 +14,148 @@
         android:id="@+id/llLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="10dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/skit_jobs"
-            app:civ_border_color="#FF000000" />
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp">
 
-            <TextView
-                android:id="@+id/postName"
-                android:layout_width="match_parent"
+            <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginRight="5dp"
+                android:elevation="3dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/skit_jobs"
+                app:riv_corner_radius="100dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="General Manager, Project Officer,Dy. Project Officer and other -26 Posts"
-                android:textColor="#0F6493"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/boardName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="hindustan shipyard Limited"
-                android:textColor="#9F3931"
-                android:textSize="13sp"
-                android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/postName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="General Manager, Project Officer,Dy. Project Officer and other -26 Posts"
+                    android:textColor="#2F6B99"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/qualifications"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="hindustan shipyard Limited"
-                android:textColor="#009688"
-                android:textSize="11sp"
-                android:textStyle="bold|italic" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/boardName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="hindustan shipyard Limited"
+                    android:textColor="#404144"
+                    android:textSize="13sp"
+                    android:textStyle="bold|italic" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight=".0001"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/qualifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="hindustan shipyard Limited"
+                    android:textColor="#7D7E80"
+                    android:textSize="12sp"
+                    android:textStyle="bold|italic" />
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="end"
-                android:src="@drawable/ic_bookmark" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-                android:gravity="bottom"
-                android:text="17d left"
-                android:textColor="#D9404144"
-                android:textSize="12sp"
-                android:textStyle="italic" />
+                android:layout_weight=".0001"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="end"
+                    android:src="@drawable/ic_bookmark" />
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_gravity="bottom"-->
+<!--                    android:gravity="bottom"-->
+<!--                    android:text="17d left"-->
+<!--                    android:textColor="#D9404144"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:textStyle="italic" />-->
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginBottom="5dp"
+            android:padding="3dp"
+            android:background="#262F6B99">
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Posted Date"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="#000"
+                    android:textStyle="bold|italic"/>
+                <TextView
+                    android:id="@+id/postedDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last Date"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="11sp"
+                    android:textColor="#2F6B99"
+                    android:textStyle="italic"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last Date"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:textColor="#000"
+                    android:layout_marginBottom="2dp"
+                    android:textStyle="bold|italic"/>
+                <TextView
+                    android:id="@+id/lastDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last Date"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="11sp"
+                    android:textColor="#2F6B99"
+                    android:textStyle="italic"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

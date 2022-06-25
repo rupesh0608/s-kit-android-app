@@ -29,6 +29,8 @@ class JobsAdapter(val list: ArrayList<Jobs>, private val size: Int) : RecyclerVi
         holder.postName.text = list[position].postName
         holder.boardName.text = list[position].boardName
         holder.qualifications.text = list[position].qualifications
+        holder.postedDate.text = list[position].postDate
+        holder.lastDate.text = list[position].lastDate
         holder.llLayout.startAnimation(
             AnimationUtils.loadAnimation(
                 holder.view.context, R.anim.animation_fall_down
@@ -52,6 +54,8 @@ class JobsAdapter(val list: ArrayList<Jobs>, private val size: Int) : RecyclerVi
         val postName = itemView.findViewById<TextView>(R.id.postName)
         val boardName = itemView.findViewById<TextView>(R.id.boardName)
         val qualifications = itemView.findViewById<TextView>(R.id.qualifications)
+        val postedDate = itemView.findViewById<TextView>(R.id.postedDate)
+        val lastDate = itemView.findViewById<TextView>(R.id.lastDate)
         val llLayout=itemView.findViewById<LinearLayout>(R.id.llLayout)
 
         init {

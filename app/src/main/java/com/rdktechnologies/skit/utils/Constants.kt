@@ -8,6 +8,7 @@ class Constants {
        val SHARED_PREFERENCE_LOGIN_RESPONSE="login_response"
        val SHARED_PREFERENCE_PROFILE="profile"
        val BASE_URL="https://s-kit.herokuapp.com/api/"
+       val UDEMY_URL="https://www.udemy.com/api-2.0/"
        val FRAGMENT_HOME="Home_Fragment"
        val FRAGMENT_GOVT_EXAMS="GovtExams_Fragment"
        val FRAGMENT_SERVICES="Services_Fragment"

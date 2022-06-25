@@ -13,11 +13,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rdktechnologies.skit.R
+import com.rdktechnologies.skit.helperclasses.apiclasses.Course
+import com.rdktechnologies.skit.helperclasses.apiclasses.CoursesResponse
 import com.rdktechnologies.skit.helperclasses.apiclasses.EligibleJobResponse
 import com.rdktechnologies.skit.helperclasses.apiclasses.Jobs
 import com.rdktechnologies.skit.ui.profilescreen.ProfileScreen
 import com.rdktechnologies.skit.utils.SharedPreference
 import com.technicalrupu.sportsapp.HelperClasses.Api.MyApi
+import com.technicalrupu.sportsapp.HelperClasses.Api.UdemyApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -117,24 +120,22 @@ private fun initializeListeners(){
         heading1.text="Recommended Courses"
         jobRecyclerview.visibility=View.GONE
         courseRecyclerview.visibility=View.GONE
-        MyApi().getAllEligibleJobs(SharedPreference(requireActivity()).getLoginResponse()!!.data!!.id!!).enqueue(object : Callback<EligibleJobResponse> {
+        UdemyApi().getRecommendedCourses().enqueue(object : Callback<CoursesResponse> {
             override fun onResponse(
-                call: Call<EligibleJobResponse>,
-                response: Response<EligibleJobResponse>
+                call: Call<CoursesResponse>,
+                response: Response<CoursesResponse>
             ) {
                 if (response.isSuccessful && response.body()!=null) {
-                    if(response.body()!!.error!=true) {
-                        val adapter =CourseAdapter(response.body()!!.data!! as ArrayList<Jobs>,7)
+                    Toast.makeText(activity?.applicationContext,response.body()!!.count.toString(),Toast.LENGTH_SHORT).show()
+                        val adapter =CourseAdapter(response.body()!!.results as ArrayList<Course>,7)
                         courseRecyclerview.layoutManager = LinearLayoutManager(activity)
                         courseRecyclerview.visibility=View.VISIBLE
                         courseRecyclerview.adapter = adapter
-                    }else{
-                        Toast.makeText(requireActivity(),"Something went wrong...", Toast.LENGTH_SHORT).show()
-                    }
+
                 }
             }
 
-            override fun onFailure(call: Call<EligibleJobResponse>, t: Throwable) {
+            override fun onFailure(call: Call<CoursesResponse>, t: Throwable) {
                 Toast.makeText(requireActivity(),t.message, Toast.LENGTH_SHORT).show()
             }
         })
