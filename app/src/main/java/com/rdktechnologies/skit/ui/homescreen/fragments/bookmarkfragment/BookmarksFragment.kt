@@ -48,9 +48,9 @@ class BookmarksFragment : Fragment() {
         )
         data.add(ProfileButtonModel(text = "About", icon = R.drawable.ic_about_icon))
         data.add(ProfileButtonModel(text = "Logout", icon = R.drawable.ic_logout_icon))
-        val adapter = JobsAdapter(data)
-        recyclerview.layoutManager = LinearLayoutManager(activity)
-        recyclerview.adapter = adapter
+//        val adapter = JobsAdapter(data)
+//        recyclerview.layoutManager = LinearLayoutManager(activity)
+//        recyclerview.adapter = adapter
 
         return view
     }

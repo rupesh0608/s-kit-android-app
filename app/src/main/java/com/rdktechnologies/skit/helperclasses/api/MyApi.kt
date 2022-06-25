@@ -1,5 +1,6 @@
 package com.technicalrupu.sportsapp.HelperClasses.Api
 
+import com.rdktechnologies.skit.helperclasses.apiclasses.EligibleJobResponse
 import com.rdktechnologies.skit.helperclasses.apiclasses.LoginResponse
 import com.rdktechnologies.skit.helperclasses.apiclasses.ServiceResponse
 import com.rdktechnologies.skit.helperclasses.apiclasses.SignupResponse
@@ -56,6 +57,8 @@ interface MyApi {
 
     @GET("admin/services/all")
     fun getAllServices(): Call<ServiceResponse>
+    @GET("app/jobs/all_eligible_jobs/1")
+    fun getAllEligibleJobs(): Call<EligibleJobResponse>
 
 
     companion object{

@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="55dp"
-                android:text="Find Your \nEligible Apportunities"
+                android:text="Find Your \nEligible opportunities"
                 android:textAllCaps="false"
                 android:textColor="#404144"
                 android:textSize="22dp"
@@ -160,6 +160,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:overScrollMode="never"
             android:id="@+id/home_recyclerView"
             tools:listitem="@layout/item_setting_buttons"/>
     </LinearLayout>

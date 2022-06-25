@@ -4,13 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rdktechnologies.skit.R
-import com.rdktechnologies.skit.ui.profilescreen.ProfileButtonModel
+import com.rdktechnologies.skit.helperclasses.apiclasses.EligibleJobResponse
+import com.rdktechnologies.skit.helperclasses.apiclasses.Jobs
 import com.rdktechnologies.skit.utils.SharedPreference
+import com.technicalrupu.sportsapp.HelperClasses.Api.MyApi
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 
@@ -25,38 +33,6 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         init(view)
-        val data = ArrayList<ProfileButtonModel>()
-        data.add(ProfileButtonModel(text = "Edit Profile", icon = R.drawable.ic_edit_profile))
-        data.add(
-            ProfileButtonModel(
-                text = "Upload Documents",
-                icon = R.drawable.ic_upload_document_icon
-            )
-        )
-        data.add(
-            ProfileButtonModel(
-                text = "Verification History",
-                icon = R.drawable.ic_verification_history_icon
-            )
-        )
-        data.add(
-            ProfileButtonModel(
-                text = "Download Resume",
-                icon = R.drawable.ic_download_resume_icon
-            )
-        )
-        data.add(
-            ProfileButtonModel(
-                text = "Change Password",
-                icon = R.drawable.ic_change_password_icon
-            )
-        )
-        data.add(ProfileButtonModel(text = "About", icon = R.drawable.ic_about_icon))
-        data.add(ProfileButtonModel(text = "Logout", icon = R.drawable.ic_logout_icon))
-        val adapter = JobsAdapter(data)
-        recyclerview.layoutManager = LinearLayoutManager(activity)
-        recyclerview.adapter = adapter
-
         return view
     }
 
@@ -64,6 +40,35 @@ class HomeFragment : Fragment() {
         recyclerview = view.findViewById(R.id.home_recyclerView)
         txtGm = view.findViewById<TextView>(R.id.txtGm)
         txtGm.text=setWishing()
+        getAllEligibleJobs()
+    }
+
+    private fun getAllEligibleJobs(){
+        MyApi().getAllEligibleJobs().enqueue(object : Callback<EligibleJobResponse> {
+            override fun onResponse(
+                call: Call<EligibleJobResponse>,
+                response: Response<EligibleJobResponse>
+            ) {
+                if (response.isSuccessful && response.body()!=null) {
+                    if(response.body()!!.error!=true) {
+
+                        loadJobs(response.body()!!.data!! as ArrayList<Jobs>)
+                    }else{
+                        Toast.makeText(context,"Something went wrong...", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<EligibleJobResponse>, t: Throwable) {
+                Toast.makeText(context,t.message, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    fun loadJobs(list:ArrayList<Jobs>){
+        val adapter = JobsAdapter(list)
+        recyclerview.layoutManager = LinearLayoutManager(activity)
+        recyclerview.adapter = adapter
     }
 
     private fun setWishing(): String {

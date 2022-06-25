@@ -1,69 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.cardview.widget.CardView
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="5dp"
-        android:padding="5dp"
-        android:orientation="horizontal"
-        app:cardElevation="2dp"
-        app:cardCornerRadius="8dp">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="5dp"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp">
+
     <LinearLayout
+        android:id="@+id/llLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:paddingHorizontal="10dp"
-        android:paddingVertical="10dp"
-        android:orientation="horizontal">
+        android:paddingVertical="10dp">
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/ic_launcher_background"
-            app:civ_border_color="#FF000000"/>
+            android:src="@drawable/skit_jobs"
+            app:civ_border_color="#FF000000" />
+
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/postName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
                 android:text="General Manager, Project Officer,Dy. Project Officer and other -26 Posts"
-                android:textColor="#404144"
-                android:textSize="14sp"
-                android:layout_marginBottom="10dp"
+                android:textColor="#0F6493"
+                android:textSize="15sp"
                 android:textStyle="bold" />
+
             <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="hindustan shipyard Limited"
-            android:textColor="#BF404144"
-            android:textSize="13sp"
-            android:textStyle="bold|italic" />
+                android:id="@+id/boardName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="hindustan shipyard Limited"
+                android:textColor="#9F3931"
+                android:textSize="13sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/qualifications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="hindustan shipyard Limited"
+                android:textColor="#009688"
+                android:textSize="11sp"
+                android:textStyle="bold|italic" />
         </LinearLayout>
+
         <LinearLayout
-            android:layout_weight=".0001"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight=".0001"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="end"
-                android:src="@drawable/ic_bookmark"/>
+                android:src="@drawable/ic_bookmark" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-               android:gravity="bottom"
-                android:textStyle="italic"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"
+                android:text="17d left"
                 android:textColor="#D9404144"
                 android:textSize="12sp"
-                android:text="17d left"/>
+                android:textStyle="italic" />
         </LinearLayout>
     </LinearLayout>
-    </androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView>
