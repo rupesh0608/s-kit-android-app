@@ -57,8 +57,8 @@ interface MyApi {
 
     @GET("admin/services/all")
     fun getAllServices(): Call<ServiceResponse>
-    @GET("app/jobs/all_eligible_jobs/1")
-    fun getAllEligibleJobs(): Call<EligibleJobResponse>
+    @GET("app/jobs/all_eligible_jobs/{id}")
+    fun getAllEligibleJobs(@Path("id")  userId:Long): Call<EligibleJobResponse>
 
 
     companion object{

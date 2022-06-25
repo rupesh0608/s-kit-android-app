@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rdktechnologies.skit.R
 import com.rdktechnologies.skit.helperclasses.apiclasses.Jobs
 
-class JobsAdapter(val list: ArrayList<Jobs>, private val size: Int) : RecyclerView.Adapter<JobsAdapter.ViewHolder>() {
+class CourseAdapter(val list: ArrayList<Jobs>, private val size: Int) : RecyclerView.Adapter<CourseAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -26,7 +26,7 @@ class JobsAdapter(val list: ArrayList<Jobs>, private val size: Int) : RecyclerVi
     @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.postName.text = list[position].postName
+        holder.postName.text = "Recent Courses"
         holder.boardName.text = list[position].boardName
         holder.qualifications.text = list[position].qualifications
         holder.llLayout.startAnimation(
