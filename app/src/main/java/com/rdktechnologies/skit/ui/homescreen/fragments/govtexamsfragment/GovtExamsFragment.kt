@@ -21,6 +21,8 @@ import com.rdktechnologies.skit.ui.homescreen.fragments.homefragment.CourseAdapt
 import com.rdktechnologies.skit.ui.homescreen.fragments.homefragment.JobsAdapter
 import com.rdktechnologies.skit.ui.profilescreen.ProfileButtonModel
 import com.rdktechnologies.skit.utils.SharedPreference
+import com.rdktechnologies.skit.utils.hideProgressAlert
+import com.rdktechnologies.skit.utils.showProgressAlert
 import com.technicalrupu.sportsapp.HelperClasses.Api.MyApi
 import retrofit2.Call
 import retrofit2.Callback
@@ -74,13 +76,14 @@ class GovtExamsFragment : Fragment() {
     }
     fun init(view: View) {
         recyclerview =view.findViewById(R.id.govtExamsRecyclerview)
+        recyclerview.visibility=View.VISIBLE
         heading1=view.findViewById(R.id.heading1)
         edtSearch=view.findViewById(R.id.edtSearch)
         loadUpcomingExams()
     }
 
     private fun loadUpcomingExams(){
-        recyclerview.visibility=View.GONE
+        activity?.showProgressAlert()
         MyApi().getAllEligibleJobs(SharedPreference(requireActivity()).getLoginResponse()!!.data!!.id!!).enqueue(object :
             Callback<EligibleJobResponse> {
             @SuppressLint("SetTextI18n")
@@ -100,14 +103,18 @@ class GovtExamsFragment : Fragment() {
                             )
                         }
                         examList=data
+                        activity?.hideProgressAlert()
                         loadRecyclerView(data)
+
                     }else{
+                        activity?.hideProgressAlert()
                         Toast.makeText(requireActivity(),"Something went wrong...", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
 
             override fun onFailure(call: Call<EligibleJobResponse>, t: Throwable) {
+                activity?.hideProgressAlert()
                 Toast.makeText(requireActivity(),t.message, Toast.LENGTH_SHORT).show()
             }
         })
@@ -116,11 +123,13 @@ class GovtExamsFragment : Fragment() {
     }
 
     fun loadRecyclerView(data:ArrayList<ProfileButtonModel>){
+        activity?.showProgressAlert()
         heading1.text="Found(${data.size})"
         val adapter = GovtExamsAdapter(data)
         recyclerview.layoutManager = LinearLayoutManager(activity)
         recyclerview.visibility=View.VISIBLE
         recyclerview.adapter = adapter
+        activity?.hideProgressAlert()
     }
 
 }

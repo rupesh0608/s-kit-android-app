@@ -1,27 +1,26 @@
 package com.rdktechnologies.skit.ui.homescreen
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.rdktechnologies.skit.R
 import com.rdktechnologies.skit.databinding.ActivityHomeScreenBinding
-import com.rdktechnologies.skit.databinding.ActivitySignupScreenBinding
-import com.rdktechnologies.skit.ui.homescreen.fragments.bookmarkfragment.BookmarksFragment
-import com.rdktechnologies.skit.ui.homescreen.fragments.govtexamsfragment.GovtExamsFragment
-import com.rdktechnologies.skit.ui.homescreen.fragments.homefragment.HomeFragment
-import com.rdktechnologies.skit.ui.homescreen.fragments.servicefragment.ServicesFragment
 import com.rdktechnologies.skit.ui.profilescreen.ProfileScreen
-import com.rdktechnologies.skit.ui.signupscreen.SignUpViewModel
 import com.rdktechnologies.skit.utils.AppUtils
 import com.rdktechnologies.skit.utils.Constants
 import com.rdktechnologies.skit.utils.SharedPreference
 import com.rdktechnologies.skit.utils.shortToast
+
 
 class HomeScreen : AppCompatActivity(),HomeListener {
 
@@ -113,4 +112,5 @@ class HomeScreen : AppCompatActivity(),HomeListener {
             finish()
         }
     }
+
 }

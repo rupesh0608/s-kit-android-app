@@ -7,6 +7,7 @@ import com.rdktechnologies.skit.helperclasses.apiclasses.LoginResponse
 import com.rdktechnologies.skit.helperclasses.apiclasses.ProfileData
 import com.rdktechnologies.skit.utils.SharedPreference
 import com.technicalrupu.sportsapp.HelperClasses.Retrofit
+import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -33,16 +34,13 @@ class EditProfileViewModel : ViewModel() {
         editProfileListener?.showProgress()
         try {
             if(path!=null) {
-                val file =
-                    RequestBody.create(
-                        "multipart/form-data".toMediaTypeOrNull(),
-                        File(path.toString())
-                    )
+                val requestFile: RequestBody =
+                    RequestBody.create("image/*".toMediaTypeOrNull(), File(path!!))
              val   image =
                     MultipartBody.Part.createFormData(
                         "profilePic",
-                        File(path.toString()).name,
-                        file
+                        File(path!!).name,
+                        requestFile
                     )
                 Retrofit(context!!).createWithAuthInterface().editProfileWithImage(
                     firstName!!, lastName!!,

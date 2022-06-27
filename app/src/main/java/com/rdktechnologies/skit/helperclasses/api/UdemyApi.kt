@@ -24,6 +24,10 @@ interface UdemyApi {
 @GET("courses/?search=job%20guaranteed%20courses%20for%20class%2010th%20student&price=price-free&is_affiliate_agreed=True&instructional_level=beginner")
 fun getRecommendedCourses(
 ): Call<CoursesResponse>
+    @GET
+    fun getRecommendedCoursesWithQuery(
+      @Url  text:String
+    ): Call<CoursesResponse>
     companion object{
 
         operator fun invoke():UdemyApi{

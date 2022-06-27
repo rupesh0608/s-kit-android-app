@@ -2,12 +2,21 @@ package com.rdktechnologies.skit.ui.profilescreen.subactivity.editprofile
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toBitmap
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
@@ -16,6 +25,8 @@ import com.rdktechnologies.skit.databinding.ActivityEditProfileScreenBinding
 import com.rdktechnologies.skit.helperclasses.apiclasses.LoginResponse
 import com.rdktechnologies.skit.ui.permissioninfoscreen.PermissionInfoScreen
 import com.rdktechnologies.skit.utils.*
+import java.io.ByteArrayOutputStream
+import java.io.File
 
 
 class EditProfileScreen : AppCompatActivity(), EditProfileListener {
@@ -54,16 +65,17 @@ class EditProfileScreen : AppCompatActivity(), EditProfileListener {
         viewModel.email = profile?.email
         viewModel.context=this
         viewModel.phoneNumber=profile?.phoneNumber.toString()
-        binding.progressView.gone()
+        binding.progressView.visibility=View.GONE
+     hideProgressAlert()
     }
 
     override fun onFailure(message: String) {
-        binding.progressView.gone()
+        hideProgressAlert()
         shortToast(message)
     }
 
     override fun onSuccess(response: LoginResponse) {
-        binding.progressView.gone()
+        hideProgressAlert()
         shortToast(response.message!!)
     }
 
@@ -79,7 +91,7 @@ class EditProfileScreen : AppCompatActivity(), EditProfileListener {
     }
 
     override fun showProgress() {
-        binding.progressView.show()
+        showProgressAlert()
     }
 
     override fun onRequestPermissionsResult(
@@ -100,20 +112,70 @@ class EditProfileScreen : AppCompatActivity(), EditProfileListener {
         if (resultCode == RESULT_OK) {
             if (requestCode == 101) {
                 val selectedImageUri: Uri? = data?.data
-                var path:String?=null
-                val pathCol = arrayOf(MediaStore.Images.Media.DATA)
-                val cursor = contentResolver.query(selectedImageUri!!, pathCol, null, null, null)
-                if (cursor != null) {
-                    cursor.moveToFirst()
-                    val colIndex = cursor.getColumnIndex(pathCol[0])
-                    path = cursor.getString(colIndex)
-                    cursor.close()
-                }
-                viewModel.path=path
-                if (null != selectedImageUri) {
+                binding.imgProfile.setImageURI(selectedImageUri)
+                binding.imgProfile.visibility= View.GONE
+                val drawable= binding.imgProfile.drawable as BitmapDrawable
+                val bitmap=drawable.bitmap
+                val path=getRealPathFromURI(getImageUri(this,bitmap))
+                val file=File(path)
+                if(file.exists()){
+                    viewModel.path=path
+                    binding.imgProfile.visibility= View.VISIBLE
                     binding.imgProfile.setImageURI(selectedImageUri)
+                }else{
+                    shortToast("file does not exist")
                 }
             }
+        }
+    }
+    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "xyz", null)
+        return Uri.parse(path)
+    }
+
+    private fun getRealPathFromURI(uri: Uri): String {
+        var path = ""
+        if (contentResolver != null) {
+            val cursor: Cursor? = contentResolver.query(uri, null, null, null, null)
+            if (cursor != null) {
+                cursor.moveToFirst()
+                val idx: Int = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+                path = cursor.getString(idx)
+                cursor.close()
+            }
+        }
+        return path
+    }
+    inner class BackgroundTask(var ref: Activity, val bitmap: Bitmap) :
+        AsyncTask<Int, Int, Void>() {
+
+        override fun doInBackground(vararg params: Int?): Void? {
+            val file = com.rdktechnologies.skit.helperclasses.File(ref)
+            file.saveImage(bitmap)
+            return null
+        }
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+        }
+
+        override fun onPostExecute(result: Void?) {
+            super.onPostExecute(result)
+        }
+
+        override fun onProgressUpdate(vararg values: Int?) {
+            super.onProgressUpdate(*values)
+        }
+
+        override fun onCancelled(result: Void?) {
+            super.onCancelled(result)
+
+        }
+
+        override fun onCancelled() {
+            super.onCancelled()
         }
     }
 

@@ -1,11 +1,16 @@
 package com.rdktechnologies.skit.utils
 
+import android.R
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+
 
 class AppUtils {
     fun showToast(message: String, context: Context) {
@@ -18,6 +23,7 @@ class AppUtils {
     fun changeFragment(containerId: Int, fragment: Fragment,fragmentActivity:FragmentActivity) {
         fragmentActivity.supportFragmentManager.beginTransaction().replace(containerId, fragment).commit()
     }
+
 
     fun setFragmentWithDefaultTransition(
         containerId: Int,

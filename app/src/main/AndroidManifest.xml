@@ -15,6 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skit">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="@string/app_name"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider" />
+        </provider>
+        <activity
+            android:name=".ui.morejobscoursesscreen.MoreJobsCoursesActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.documentscannerscreen.DocumentScannerScreen"
             android:exported="false" />

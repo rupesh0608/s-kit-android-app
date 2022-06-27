@@ -58,7 +58,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="start"
-            android:text="found(10)"
+            android:text="Found(0)"
             android:textColor="#404144"
             android:textSize="20sp"
             android:textStyle="bold" />
