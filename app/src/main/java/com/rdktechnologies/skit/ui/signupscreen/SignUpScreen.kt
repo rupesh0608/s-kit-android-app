@@ -2,22 +2,17 @@ package com.rdktechnologies.skit.ui.signupscreen
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.tasks.Task
-import com.google.gson.Gson
 import com.rdktechnologies.skit.R
 import com.rdktechnologies.skit.databinding.ActivitySignupScreenBinding
 import com.rdktechnologies.skit.helperclasses.apiclasses.SignupResponse
 import com.rdktechnologies.skit.ui.loginscreen.LoginScreen
+import com.rdktechnologies.skit.utils.hideProgressAlert
 import com.rdktechnologies.skit.utils.shortToast
+import com.rdktechnologies.skit.utils.showProgressAlert
 
 class SignUpScreen : AppCompatActivity(),SignUpListener {
    lateinit var binding: ActivitySignupScreenBinding
@@ -32,16 +27,16 @@ class SignUpScreen : AppCompatActivity(),SignUpListener {
     }
 
     override fun onError(message: String) {
-        binding.progress.visibility= View.GONE
+        hideProgressAlert()
         shortToast(message)
     }
 
     override fun onStarted() {
-        binding.progress.visibility= View.VISIBLE
+        showProgressAlert()
     }
 
     override fun onSuccess(response: SignupResponse) {
-        binding.progress.visibility= View.GONE
+       hideProgressAlert()
         shortToast(response.message)
         startActivity(Intent(this, LoginScreen::class.java))
         finish()
@@ -51,6 +46,7 @@ class SignUpScreen : AppCompatActivity(),SignUpListener {
         startActivity(Intent(this, LoginScreen::class.java))
         finish()
     }
+
 
 
 }
