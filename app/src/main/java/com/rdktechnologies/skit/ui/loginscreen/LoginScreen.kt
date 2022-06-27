@@ -18,10 +18,7 @@ import com.rdktechnologies.skit.ui.homescreen.HomeScreen
 import com.rdktechnologies.skit.ui.profilescreen.ProfileScreen
 import com.rdktechnologies.skit.ui.profilescreen.subactivity.uploaddocument.UploadDocumentsScreen
 import com.rdktechnologies.skit.ui.signupscreen.SignUpScreen
-import com.rdktechnologies.skit.utils.SharedPreference
-import com.rdktechnologies.skit.utils.gone
-import com.rdktechnologies.skit.utils.shortToast
-import com.rdktechnologies.skit.utils.show
+import com.rdktechnologies.skit.utils.*
 
 class LoginScreen : AppCompatActivity(), LoginListener {
     lateinit var binding: ActivityLoginScreenBinding
@@ -39,7 +36,6 @@ class LoginScreen : AppCompatActivity(), LoginListener {
         viewModel.context=this
         binding.progressView.gone()
         binding.progressLayout.gone()
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -71,8 +67,9 @@ class LoginScreen : AppCompatActivity(), LoginListener {
     }
 
     override fun onError(message: String) {
-        binding.progressView.gone()
-        binding.progressLayout.gone()
+//        binding.progressView.gone()
+//        binding.progressLayout.gone()
+        hideProgressAlert()
         shortToast(message)
     }
 
@@ -88,8 +85,9 @@ class LoginScreen : AppCompatActivity(), LoginListener {
 
     override fun onSuccess(response:LoginResponse) {
         SharedPreference(this@LoginScreen).setLoginResponse(response as LoginResponse)
-            binding.progressView.gone()
-            binding.progressLayout.gone()
+//            binding.progressView.gone()
+//            binding.progressLayout.gone()
+        hideProgressAlert()
             shortToast(response.message!!)
         if(response.data?.verification!=null){
             if(response.data!!.verification!!.count==0 && response.data!!.verification!!.status=="none"){
@@ -124,8 +122,9 @@ class LoginScreen : AppCompatActivity(), LoginListener {
     }
 
     override fun showProgress() {
-        binding.progressLayout.show()
-        binding.progressView.show()
+//        binding.progressLayout.show()
+//        binding.progressView.show()
+        showProgressAlert()
     }
 
 
