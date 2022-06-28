@@ -55,6 +55,16 @@ interface MyApi {
         @Query("phoneNumber") phoneNumber: Long?,
     ): Call<LoginResponse>
 
+    @Multipart
+    @POST("app/verification/upload_documents")
+    fun uploadDocuments(
+        @Query("userId") userId: Long,
+        @Part document10: MultipartBody.Part?=null,
+        @Part document12: MultipartBody.Part?=null,
+        @Part documentGraduation: MultipartBody.Part?=null,
+        @Part documentCertificates: MultipartBody.Part?=null
+    ): Call<LoginResponse>
+
     @GET("admin/services/all")
     fun getAllServices(): Call<ServiceResponse>
     @GET("app/jobs/all_eligible_jobs/{id}")
